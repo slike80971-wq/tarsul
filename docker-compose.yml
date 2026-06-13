@@ -1,0 +1,102 @@
+# ============================================================
+# Tarsul — تراسل | Production Docker Compose
+# Enterprise Encrypted Messaging Platform
+# ============================================================
+# Usage:
+#   docker compose up -d          # Start all services
+#   docker compose logs -f        # View logs
+#   docker compose down           # Stop all services
+# ============================================================
+
+version: "3.9"
+
+services:
+  # ========================
+  # Tarsul Main Application (Next.js)
+  # ========================
+  tarsul-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tarsul-app
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=file:/app/data/tarsul.db
+    volumes:
+      - tarsul-data:/app/data          # Persist SQLite database
+      - tarsul-uploads:/app/public/uploads  # Persist uploaded files
+    depends_on:
+      - tarsul-chat-ws
+    networks:
+      - tarsul-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ========================
+  # WebSocket Real-Time Service
+  # ========================
+  tarsul-chat-ws:
+    build:
+      context: ./mini-services/chat-service
+      dockerfile: Dockerfile
+    container_name: tarsul-chat-ws
+    restart: unless-stopped
+    ports:
+      - "3003:3003"
+    environment:
+      - NODE_ENV=production
+    networks:
+      - tarsul-network
+
+  # ========================
+  # Nginx Reverse Proxy (SSL/TLS Termination)
+  # ========================
+  tarsul-nginx:
+    image: nginx:1.25-alpine
+    container_name: tarsul-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro     # Mount SSL certificates
+    depends_on:
+      - tarsul-app
+    networks:
+      - tarsul-network
+
+  # ========================
+  # Optional: PostgreSQL (for production scale)
+  # Uncomment to use PostgreSQL instead of SQLite
+  # ========================
+  # tarsul-db:
+  #   image: postgres:16-alpine
+  #   container_name: tarsul-db
+  #   restart: unless-stopped
+  #   environment:
+  #     POSTGRES_DB: tarsul
+  #     POSTGRES_USER: tarsul
+  #     POSTGRES_PASSWORD: ${DB_PASSWORD}
+  #   volumes:
+  #     - postgres-data:/var/lib/postgresql/data
+  #   networks:
+  #     - tarsul-network
+
+volumes:
+  tarsul-data:
+    driver: local
+  tarsul-uploads:
+    driver: local
+  # postgres-data:
+  #   driver: local
+
+networks:
+  tarsul-network:
+    driver: bridge

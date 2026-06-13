@@ -1,0 +1,17 @@
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  output: "standalone",
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  reactStrictMode: false,
+  allowedDevOrigins: [
+    "127.0.0.1",
+    "localhost",
+    "21.0.17.147",
+    ".space-z.ai",
+  ],
+};
+
+export default nextConfig;
