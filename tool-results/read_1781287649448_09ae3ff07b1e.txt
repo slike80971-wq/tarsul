@@ -1,0 +1,812 @@
+     1→     1→/**
+     2→     2→ * Tarsul - تراسل | Main Chat Layout
+     3→     3→ * Enterprise-grade encrypted chat interface with sidebar, message area, and E2EE.
+     4→     4→ */
+     5→     5→'use client';
+     6→     6→
+     7→     7→import { useEffect, useState, useRef, useCallback } from 'react';
+     8→     8→import { useAuthStore, User } from '@/store/auth-store';
+     9→     9→import { useChatStore, Message, Channel, DMConversation } from '@/store/chat-store';
+    10→    10→import { useSocket } from '@/hooks/use-socket';
+    11→    11→import { CryptoManager } from '@/lib/crypto';
+    12→    12→import { Button } from '@/components/ui/button';
+    13→    13→import { Input } from '@/components/ui/input';
+    14→    14→import { ScrollArea } from '@/components/ui/scroll-area';
+    15→    15→import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+    16→    16→import { Badge } from '@/components/ui/badge';
+    17→    17→import { Separator } from '@/components/ui/separator';
+    18→    18→import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+    19→    19→import {
+    20→    20→  Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter,
+    21→    21→} from '@/components/ui/dialog';
+    22→    22→import { Label } from '@/components/ui/label';
+    23→    23→import {
+    24→    24→  Hash, MessageCircle, Send, Shield, Lock, Plus, Search, Settings, LogOut,
+    25→    25→  Menu, X, Users, ChevronLeft, Circle, CircleDot, Loader2, Eye, EyeOff,
+    26→    26→  KeyRound, Building2, ShieldCheck, Pin, Reply, MoreVertical, Image as ImageIcon,
+    27→    27→  Paperclip, Smile, AtSign, Mic, Phone, Video, Clock, Edit3,
+    28→    28→} from 'lucide-react';
+    29→    29→import {
+    30→    30→  DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger,
+    31→    31→  DropdownMenuSeparator,
+    32→    32→} from '@/components/ui/dropdown-menu';
+    33→    33→
+    34→    34→// ========================
+    35→    35→// Utility: Format time
+    36→    36→// ========================
+    37→    37→function formatTime(dateStr: string): string {
+    38→    38→  const date = new Date(dateStr);
+    39→    39→  const now = new Date();
+    40→    40→  const isToday = date.toDateString() === now.toDateString();
+    41→    41→  const time = date.toLocaleTimeString('ar-LY', { hour: '2-digit', minute: '2-digit' });
+    42→    42→
+    43→    43→  if (isToday) return time;
+    44→    44→  const yesterday = new Date(now);
+    45→    45→  yesterday.setDate(yesterday.getDate() - 1);
+    46→    46→  if (date.toDateString() === yesterday.toDateString()) return `أمس ${time}`;
+    47→    47→  return `${date.toLocaleDateString('ar-LY', { month: 'short', day: 'numeric' })} ${time}`;
+    48→    48→}
+    49→    49→
+    50→    50→// ========================
+    51→    51→// Status Icon
+    52→    52→// ========================
+    53→    53→function StatusDot({ status }: { status: string }) {
+    54→    54→  const color = status === 'online' ? 'bg-emerald-500' : status === 'away' ? 'bg-yellow-500' : status === 'do_not_disturb' ? 'bg-red-500' : 'bg-gray-300';
+    55→    55→  return <span className={`inline-block w-2.5 h-2.5 rounded-full ${color} ring-2 ring-white`} />;
+    56→    56→}
+    57→    57→
+    58→    58→// ========================
+    59→    59→// Encryption Badge
+    60→    60→// ========================
+    61→    61→function EncryptionBadge() {
+    62→    62→  return (
+    63→    63→    <TooltipProvider>
+    64→    64→      <Tooltip>
+    65→    65→        <TooltipTrigger asChild>
+    66→    66→          <div className="inline-flex items-center gap-1 text-emerald-600">
+    67→    67→            <ShieldCheck className="w-3.5 h-3.5" />
+    68→    68→            <span className="text-[10px] font-medium">E2EE</span>
+    69→    69→          </div>
+    70→    70→        </TooltipTrigger>
+    71→    71→        <TooltipContent>
+    72→    72→          <p>مشفّر من الطرف إلى الطرف (AES-256-GCM + RSA-OAEP)</p>
+    73→    73→        </TooltipContent>
+    74→    74→      </Tooltip>
+    75→    75→    </TooltipProvider>
+    76→    76→  );
+    77→    77→}
+    78→    78→
+    79→    79→// ========================
+    80→    80→// User Avatar
+    81→    81→// ========================
+    82→    82→function UserAvatar({ name, size = 'sm' }: { name: string; size?: 'sm' | 'md' | 'lg' }) {
+    83→    83→  const initials = name ? name.charAt(0) : '?';
+    84→    84→  const sizeClass = size === 'lg' ? 'w-12 h-12 text-lg' : size === 'md' ? 'w-9 h-9 text-sm' : 'w-8 h-8 text-xs';
+    85→    85→  return (
+    86→    86→    <Avatar className={sizeClass}>
+    87→    87→      <AvatarFallback className="bg-gradient-to-br from-emerald-100 to-teal-100 text-emerald-700 font-semibold">
+    88→    88→        {initials}
+    89→    89→      </AvatarFallback>
+    90→    90→    </Avatar>
+    91→    91→  );
+    92→    92→}
+    93→    93→
+    94→    94→// ========================
+    95→    95→// Channel Sidebar
+    96→    96→// ========================
+    97→    97→function ChannelSidebar() {
+    98→    98→  const { channels, conversations, usersList, activeChannelId, activeConversationId, activeView,
+    99→    99→    setActiveChannel, setActiveConversation, setActiveView, sidebarOpen, toggleSidebar,
+   100→   100→    createChannelOpen, setCreateChannelOpen, newDMOpen, setNewDMOpen, setUsersList } = useChatStore();
+   101→   101→  const { user, token } = useAuthStore();
+   102→   102→  const [search, setSearch] = useState('');
+   103→   103→  const [newChannelName, setNewChannelName] = useState('');
+   104→   104→  const [newChannelDesc, setNewChannelDesc] = useState('');
+   105→   105→  const [dmSearch, setDmSearch] = useState('');
+   106→   106→  const [showOnline, setShowOnline] = useState(false);
+   107→   107→
+   108→   108→  // Load channels
+   109→   109→  useEffect(() => {
+   110→   110→    if (!token) return;
+   111→   111→    fetch('/api/channels', { headers: { Authorization: `Bearer ${token}` } })
+   112→   112→      .then((r) => r.json())
+   113→   113→      .then((d) => d.channels && useChatStore.getState().setChannels(d.channels))
+   114→   114→      .catch(console.error);
+   115→   115→
+   116→   116→    fetch('/api/dm', { headers: { Authorization: `Bearer ${token}` } })
+   117→   117→      .then((r) => r.json())
+   118→   118→      .then((d) => d.conversations && useChatStore.getState().setConversations(d.conversations))
+   119→   119→      .catch(console.error);
+   120→   120→  }, [token]);
+   121→   121→
+   122→   122→  const createChannel = async () => {
+   123→   123→    if (!newChannelName.trim() || !token) return;
+   124→   124→    const res = await fetch('/api/channels', {
+   125→   125→      method: 'POST',
+   126→   126→      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+   127→   127→      body: JSON.stringify({ name: newChannelName, description: newChannelDesc || undefined }),
+   128→   128→    });
+   129→   129→    const data = await res.json();
+   130→   130→    if (data.channel) {
+   131→   131→      useChatStore.getState().addChannel(data.channel);
+   132→   132→      setNewChannelName('');
+   133→   133→      setNewChannelDesc('');
+   134→   134→      setCreateChannelOpen(false);
+   135→   135→    }
+   136→   136→  };
+   137→   137→
+   138→   138→  const startDM = async (recipientId: string) => {
+   139→   139→    if (!token) return;
+   140→   140→    const res = await fetch('/api/dm', {
+   141→   141→      method: 'POST',
+   142→   142→      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+   143→   143→      body: JSON.stringify({ recipientId }),
+   144→   144→    });
+   145→   145→    const data = await res.json();
+   146→   146→    if (data.conversation) {
+   147→   147→      useChatStore.getState().addConversation(data.conversation);
+   148→   148→      setActiveConversation(data.conversation.id);
+   149→   149→      setNewDMOpen(false);
+   150→   150→    }
+   151→   151→  };
+   152→   152→
+   153→   153→  const searchUsers = async (q: string) => {
+   154→   154→    setDmSearch(q);
+   155→   155→    if (q.length < 1 || !token) return;
+   156→   156→    const res = await fetch(`/api/users?search=${encodeURIComponent(q)}`, {
+   157→   157→      headers: { Authorization: `Bearer ${token}` },
+   158→   158→    });
+   159→   159→    const data = await res.json();
+   160→   160→    if (data.users) setUsersList(data.users);
+   161→   161→  };
+   162→   162→
+   163→   163→  const filteredChannels = channels.filter((c) =>
+   164→   164→    c.name.includes(search) || (c.description && c.description.includes(search))
+   165→   165→  );
+   166→   166→
+   167→   167→  const departmentChannels = filteredChannels.filter((c) => c.type === 'department');
+   168→   168→  const regularChannels = filteredChannels.filter((c) => c.type === 'channel');
+   169→   169→
+   170→   170→  if (!sidebarOpen) {
+   171→   171→    return (
+   172→   172→      <div className="w-16 bg-gray-50 border-l flex flex-col items-center py-4 gap-3">
+   173→   173→        <Button variant="ghost" size="icon" onClick={toggleSidebar} className="text-gray-500 hover:text-gray-700">
+   174→   174→          <Menu className="w-5 h-5" />
+   175→   175→        </Button>
+   176→   176→        <Separator className="w-8" />
+   177→   177→        {channels.slice(0, 8).map((ch) => (
+   178→   178→          <TooltipProvider key={ch.id}>
+   179→   179→            <Tooltip>
+   180→   180→              <TooltipTrigger asChild>
+   181→   181→                <Button
+   182→   182→                  variant="ghost"
+   183→   183→                  size="icon"
+   184→   184→                  className={activeChannelId === ch.id ? 'bg-emerald-100 text-emerald-700' : 'text-gray-500'}
+   185→   185→                  onClick={() => setActiveChannel(ch.id)}
+   186→   186→                >
+   187→   187→                  <span className="text-lg">{ch.icon || '#'}</span>
+   188→   188→                </Button>
+   189→   189→              </TooltipTrigger>
+   190→   190→              <TooltipContent side="left">{ch.name}</TooltipContent>
+   191→   191→            </Tooltip>
+   192→   192→          </TooltipProvider>
+   193→   193→        ))}
+   194→   194→      </div>
+   195→   195→    );
+   196→   196→  }
+   197→   197→
+   198→   198→  return (
+   199→   199→    <div className="w-72 bg-gray-50 border-l flex flex-col h-full" dir="rtl">
+   200→   200→      {/* Header */}
+   201→   201→      <div className="p-4 border-b">
+   202→   202→        <div className="flex items-center justify-between mb-3">
+   203→   203→          <div className="flex items-center gap-2">
+   204→   204→            <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center">
+   205→   205→              <MessageCircle className="w-4 h-4 text-white" />
+   206→   206→            </div>
+   207→   207→            <span className="font-bold text-gray-900 text-lg">تراسل</span>
+   208→   208→          </div>
+   209→   209→          <Button variant="ghost" size="icon" onClick={toggleSidebar} className="text-gray-400 hover:text-gray-600 lg:hidden">
+   210→   210→            <X className="w-4 h-4" />
+   211→   211→          </Button>
+   212→   212→        </div>
+   213→   213→        {/* Search */}
+   214→   214→        <div className="relative">
+   215→   215→          <Search className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+   216→   216→          <Input
+   217→   217→            placeholder="بحث في القنوات..."
+   218→   218→            value={search}
+   219→   219→            onChange={(e) => setSearch(e.target.value)}
+   220→   220→            className="h-9 pr-9 text-sm bg-white"
+   221→   221→          />
+   222→   222→        </div>
+   223→   223→      </div>
+   224→   224→
+   225→   225→      <ScrollArea className="flex-1">
+   226→   226→        {/* New Conversation Buttons */}
+   227→   227→        <div className="p-3 flex gap-2">
+   228→   228→          <Dialog open={createChannelOpen} onOpenChange={setCreateChannelOpen}>
+   229→   229→            <DialogTrigger asChild>
+   230→   230→              <Button variant="outline" size="sm" className="flex-1 text-xs h-8 border-emerald-200 text-emerald-700 hover:bg-emerald-50">
+   231→   231→                <Plus className="w-3.5 h-3.5 ml-1" />
+   232→   232→                قناة جديدة
+   233→   233→              </Button>
+   234→   234→            </DialogTrigger>
+   235→   235→            <DialogContent dir="rtl">
+   236→   236→              <DialogHeader>
+   237→   237→                <DialogTitle>إنشاء قناة جديدة</DialogTitle>
+   238→   238→              </DialogHeader>
+   239→   239→              <div className="space-y-3">
+   240→   240→                <div>
+   241→   241→                  <Label>اسم القناة</Label>
+   242→   242→                  <Input value={newChannelName} onChange={(e) => setNewChannelName(e.target.value)} placeholder="مثال: قسم التدقيق" className="mt-1" />
+   243→   243→                </div>
+   244→   244→                <div>
+   245→   245→                  <Label>الوصف (اختياري)</Label>
+   246→   246→                  <Input value={newChannelDesc} onChange={(e) => setNewChannelDesc(e.target.value)} placeholder="وصف مختصر للقناة" className="mt-1" />
+   247→   247→                </div>
+   248→   248→              </div>
+   249→   249→              <DialogFooter>
+   250→   250→                <Button onClick={createChannel} className="bg-emerald-600 hover:bg-emerald-700">إنشاء</Button>
+   251→   251→              </DialogFooter>
+   252→   252→            </DialogContent>
+   253→   253→          </Dialog>
+   254→   254→
+   255→   255→          <Dialog open={newDMOpen} onOpenChange={setNewDMOpen}>
+   256→   256→            <DialogTrigger asChild>
+   257→   257→              <Button variant="outline" size="sm" className="flex-1 text-xs h-8 border-emerald-200 text-emerald-700 hover:bg-emerald-50">
+   258→   258→                <MessageCircle className="w-3.5 h-3.5 ml-1" />
+   259→   259→                محادثة جديدة
+   260→   260→              </Button>
+   261→   261→            </DialogTrigger>
+   262→   262→            <DialogContent dir="rtl">
+   263→   263→              <DialogHeader>
+   264→   264→                <DialogTitle>محادثة مباشرة جديدة</DialogTitle>
+   265→   265→              </DialogHeader>
+   266→   266→              <Input
+   267→   267→                placeholder="ابحث عن مستخدم..."
+   268→   268→                value={dmSearch}
+   269→   269→                onChange={(e) => searchUsers(e.target.value)}
+   270→   270→                className="mb-3"
+   271→   271→              />
+   272→   272→              <ScrollArea className="max-h-64">
+   273→   273→                <div className="space-y-1">
+   274→   274→                  {usersList.map((u) => (
+   275→   275→                    <button
+   276→   276→                      key={u.id}
+   277→   277→                      onClick={() => startDM(u.id)}
+   278→   278→                      className="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 text-right"
+   279→   279→                    >
+   280→   280→                      <UserAvatar name={u.name} />
+   281→   281→                      <div className="flex-1 min-w-0">
+   282→   282→                        <p className="text-sm font-medium text-gray-900 truncate">{u.name}</p>
+   283→   283→                        <p className="text-xs text-gray-500 truncate">{u.department || u.id}</p>
+   284→   284→                      </div>
+   285→   285→                      <StatusDot status={u.status} />
+   286→   286→                    </button>
+   287→   287→                  ))}
+   288→   288→                </div>
+   289→   289→              </ScrollArea>
+   290→   290→            </DialogContent>
+   291→   291→          </Dialog>
+   292→   292→        </div>
+   293→   293→
+   294→   294→        {/* Department Channels */}
+   295→   295→        {departmentChannels.length > 0 && (
+   296→   296→          <div className="px-3 mb-1">
+   297→   297→            <p className="text-[10px] uppercase font-semibold text-gray-400 tracking-wider px-2 mb-1 flex items-center gap-1">
+   298→   298→              <Building2 className="w-3 h-3" />
+   299→   299→              الأقسام والإدارات
+   300→   300→            </p>
+   301→   301→            {departmentChannels.map((ch) => (
+   302→   302→              <button
+   303→   303→                key={ch.id}
+   304→   304→                onClick={() => setActiveChannel(ch.id)}
+   305→   305→                className={`w-full flex items-center gap-2 px-2 py-1.5 rounded-lg text-sm transition-colors ${
+   306→   306→                  activeChannelId === ch.id
+   307→   307→                    ? 'bg-emerald-100 text-emerald-800 font-medium'
+   308→   308→                    : 'text-gray-600 hover:bg-gray-100'
+   309→   309→                }`}
+   310→   310→              >
+   311→   311→                <span className="text-base flex-shrink-0">{ch.icon || '🏢'}</span>
+   312→   312→                <span className="truncate flex-1 text-right">{ch.name}</span>
+   313→   313→                {ch.memberCount && (
+   314→   314→                  <span className="text-[10px] text-gray-400 flex-shrink-0">{ch.memberCount}</span>
+   315→   315→                )}
+   316→   316→              </button>
+   317→   317→            ))}
+   318→   318→          </div>
+   319→   319→        )}
+   320→   320→
+   321→   321→        {/* Regular Channels */}
+   322→   322→        {regularChannels.length > 0 && (
+   323→   323→          <div className="px-3 mb-1">
+   324→   324→            <p className="text-[10px] uppercase font-semibold text-gray-400 tracking-wider px-2 mb-1 flex items-center gap-1">
+   325→   325→              <Hash className="w-3 h-3" />
+   326→   326→              القنوات
+   327→   327→            </p>
+   328→   328→            {regularChannels.map((ch) => (
+   329→   329→              <button
+   330→   330→                key={ch.id}
+   331→   331→                onClick={() => setActiveChannel(ch.id)}
+   332→   332→                className={`w-full flex items-center gap-2 px-2 py-1.5 rounded-lg text-sm transition-colors ${
+   333→   333→                  activeChannelId === ch.id
+   334→   334→                    ? 'bg-emerald-100 text-emerald-800 font-medium'
+   335→   335→                    : 'text-gray-600 hover:bg-gray-100'
+   336→   336→                }`}
+   337→   337→              >
+   338→   338→                <Hash className="w-4 h-4 text-gray-400 flex-shrink-0" />
+   339→   339→                <span className="truncate flex-1 text-right">{ch.name}</span>
+   340→   340→              </button>
+   341→   341→            ))}
+   342→   342→          </div>
+   343→   343→        )}
+   344→   344→
+   345→   345→        {/* Direct Messages */}
+   346→   346→        <div className="px-3 mt-2">
+   347→   347→          <button
+   348→   348→            onClick={() => setShowOnline(!showOnline)}
+   349→   349→            className="w-full flex items-center justify-between px-2 mb-1"
+   350→   350→          >
+   351→   351→            <p className="text-[10px] uppercase font-semibold text-gray-400 tracking-wider flex items-center gap-1">
+   352→   352→              <MessageCircle className="w-3 h-3" />
+   353→   353→              الرسائل المباشرة
+   354→   354→            </p>
+   355→   355→            <ChevronLeft className={`w-3 h-3 text-gray-400 transition-transform ${showOnline ? 'rotate-90' : ''}`} />
+   356→   356→          </button>
+   357→   357→          {showOnline && conversations.map((conv) => (
+   358→   358→            <button
+   359→   359→              key={conv.id}
+   360→   360→              onClick={() => setActiveConversation(conv.id)}
+   361→   361→              className={`w-full flex items-center gap-2 px-2 py-1.5 rounded-lg text-sm transition-colors ${
+   362→   362→                activeConversationId === conv.id
+   363→   363→                  ? 'bg-emerald-100 text-emerald-800 font-medium'
+   364→   364→                  : 'text-gray-600 hover:bg-gray-100'
+   365→   365→              }`}
+   366→   366→            >
+   367→   367→              <div className="relative flex-shrink-0">
+   368→   368→                <UserAvatar name={conv.otherUser.name} />
+   369→   369→                <span className="absolute -bottom-0.5 -left-0.5">
+   370→   370→                  <StatusDot status={conv.otherUser.status} />
+   371→   371→                </span>
+   372→   372→              </div>
+   373→   373→              <span className="truncate flex-1 text-right">{conv.otherUser.name}</span>
+   374→   374→            </button>
+   375→   375→          ))}
+   376→   376→        </div>
+   377→   377→      </ScrollArea>
+   378→   378→
+   379→   379→      {/* User Footer */}
+   380→   380→      {user && (
+   381→   381→        <div className="p-3 border-t bg-white">
+   382→   382→          <div className="flex items-center gap-3">
+   383→   383→            <div className="relative">
+   384→   384→              <UserAvatar name={user.name} size="md" />
+   385→   385→              <span className="absolute -bottom-0.5 -left-0.5"><StatusDot status="online" /></span>
+   386→   386→            </div>
+   387→   387→            <div className="flex-1 min-w-0">
+   388→   388→              <p className="text-sm font-medium text-gray-900 truncate">{user.name}</p>
+   389→   389→              <p className="text-[11px] text-gray-500 truncate" dir="ltr">{user.email}</p>
+   390→   390→            </div>
+   391→   391→            <DropdownMenu dir="rtl">
+   392→   392→              <DropdownMenuTrigger asChild>
+   393→   393→                <Button variant="ghost" size="icon" className="text-gray-400 h-8 w-8">
+   394→   394→                  <Settings className="w-4 h-4" />
+   395→   395→                </Button>
+   396→   396→              </DropdownMenuTrigger>
+   397→   397→              <DropdownMenuContent align="start" className="w-48">
+   398→   398→                <DropdownMenuItem>
+   399→   399→                  <EncryptionBadge />
+   400→   400→                </DropdownMenuItem>
+   401→   401→                <DropdownMenuSeparator />
+   402→   402→                <DropdownMenuItem onClick={() => useAuthStore.getState().logout()} className="text-red-600">
+   403→   403→                  <LogOut className="w-4 h-4 ml-2" />
+   404→   404→                  تسجيل الخروج
+   405→   405→                </DropdownMenuItem>
+   406→   406→              </DropdownMenuContent>
+   407→   407→            </DropdownMenu>
+   408→   408→          </div>
+   409→   409→        </div>
+   410→   410→      )}
+   411→   411→    </div>
+   412→   412→  );
+   413→   413→}
+   414→   414→
+   415→   415→// ========================
+   416→   416→// Message Bubble
+   417→   417→// ========================
+   418→   418→function MessageBubble({ msg, isOwn, onReply }: { msg: Message; isOwn: boolean; onReply: (msg: Message) => void }) {
+   419→   419→  // For system messages
+   420→   420→  if (msg.type === 'system') {
+   421→   421→    return (
+   422→   422→      <div className="flex justify-center my-3">
+   423→   423→        <div className="px-4 py-1.5 bg-gray-100 rounded-full text-xs text-gray-500">
+   424→   424→          {msg.content}
+   425→   425→        </div>
+   426→   426→      </div>
+   427→   427→    );
+   428→   428→  }
+   429→   429→
+   430→   430→  return (
+   431→   431→    <div className={`flex gap-3 group ${isOwn ? 'flex-row-reverse' : ''} mb-4 px-4`}>
+   432→   432→      <div className="flex-shrink-0 mt-1">
+   433→   433→        <UserAvatar name={msg.sender.name} />
+   434→   434→      </div>
+   435→   435→      <div className={`flex-1 max-w-[70%] ${isOwn ? 'text-left' : 'text-right'}`}>
+   436→   436→        {/* Sender info */}
+   437→   437→        <div className={`flex items-center gap-2 mb-1 ${isOwn ? 'justify-end' : ''}`}>
+   438→   438→          <span className="text-sm font-semibold text-gray-900">{msg.sender.name}</span>
+   439→   439→          {msg.sender.department && (
+   440→   440→            <span className="text-[10px] text-gray-400">{msg.sender.department}</span>
+   441→   441→          )}
+   442→   442→          <span className="text-[10px] text-gray-400">{formatTime(msg.createdAt)}</span>
+   443→   443→          {msg.type === 'encrypted' && <EncryptionBadge />}
+   444→   444→          {msg.isEdited && (
+   445→   445→            <span className="text-[10px] text-gray-400 flex items-center gap-0.5">
+   446→   446→              <Edit3 className="w-2.5 h-2.5" /> مُعدّل
+   447→   447→            </span>
+   448→   448→          )}
+   449→   449→        </div>
+   450→   450→
+   451→   451→        {/* Reply reference */}
+   452→   452→        {msg.replyTo && (
+   453→   453→          <div className={`text-xs p-2 bg-gray-50 rounded-lg border-r-2 border-emerald-300 mb-1 ${isOwn ? 'text-right' : ''}`}>
+   454→   454→            <span className="font-medium text-emerald-700">{msg.replyTo.sender.name}</span>
+   455→   455→            <p className="text-gray-500 truncate">{msg.replyTo.content}</p>
+   456→   456→          </div>
+   457→   457→        )}
+   458→   458→
+   459→   459→        {/* Message content */}
+   460→   460→        <div className={`relative inline-block rounded-2xl px-4 py-2.5 ${
+   461→   461→          isOwn
+   462→   462→            ? 'bg-gradient-to-br from-emerald-500 to-teal-600 text-white rounded-tr-md'
+   463→   463→            : 'bg-white border border-gray-200 text-gray-900 rounded-tl-md shadow-sm'
+   464→   464→        }`}>
+   465→   465→          <p className="text-sm leading-relaxed whitespace-pre-wrap break-words">{msg.content}</p>
+   466→   466→
+   467→   467→          {/* Message actions (visible on hover) */}
+   468→   468→          <div className={`absolute ${isOwn ? 'left-2' : 'right-2'} -bottom-3 flex items-center gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity`}>
+   469→   469→            <Button variant="ghost" size="icon" className="h-6 w-6 text-gray-400 hover:text-gray-600" onClick={() => onReply(msg)}>
+   470→   470→              <Reply className="w-3 h-3" />
+   471→   471→            </Button>
+   472→   472→            {isOwn && (
+   473→   473→              <Button variant="ghost" size="icon" className="h-6 w-6 text-gray-400 hover:text-gray-600">
+   474→   474→                <Pin className="w-3 h-3" />
+   475→   475→              </Button>
+   476→   476→            )}
+   477→   477→          </div>
+   478→   478→        </div>
+   479→   479→      </div>
+   480→   480→    </div>
+   481→   481→  );
+   482→   482→}
+   483→   483→
+   484→   484→// ========================
+   485→   485→// Chat Area
+   486→   486→// ========================
+   487→   487→function ChatArea() {
+   488→   488→  const { messages, activeChannelId, activeConversationId, activeView, channels, conversations,
+   489→   489→    loadingMessages, sendingMessage, setLoadingMessages, setSendingMessage, addMessage } = useChatStore();
+   490→   490→  const { user, token } = useAuthStore();
+   491→   491→  const { sendMessage, sendTyping, stopTyping } = useSocket();
+   492→   492→  const [inputText, setInputText] = useState('');
+   493→   493→  const [replyTo, setReplyTo] = useState<Message | null>(null);
+   494→   494→  const messagesEndRef = useRef<HTMLDivElement>(null);
+   495→   495→  const inputRef = useRef<HTMLInputElement>(null);
+   496→   496→  const typingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+   497→   497→
+   498→   498→  const activeChannel = channels.find((c) => c.id === activeChannelId);
+   499→   499→  const activeConversation = conversations.find((c) => c.id === activeConversationId);
+   500→   500→
+   501→   501→  // Load messages when channel/DM changes
+   502→   502→  useEffect(() => {
+   503→   503→    if (!token || activeView === 'none') return;
+   504→   504→
+   505→   505→    let url = '';
+   506→   506→    if (activeView === 'channels' && activeChannelId) {
+   507→   507→      url = `/api/channels/${activeChannelId}/messages`;
+   508→   508→    } else if (activeView === 'dm' && activeConversationId) {
+   509→   509→      url = `/api/dm/${activeConversationId}/messages`;
+   510→   510→    }
+   511→   511→    if (!url) return;
+   512→   512→
+   513→   513→    setLoadingMessages(true);
+   514→   514→    fetch(url, { headers: { Authorization: `Bearer ${token}` } })
+   515→   515→      .then((r) => r.json())
+   516→   516→      .then((d) => {
+   517→   517→        if (d.messages) useChatStore.getState().setMessages(d.messages);
+   518→   518→      })
+   519→   519→      .catch(console.error)
+   520→   520→      .finally(() => setLoadingMessages(false));
+   521→   521→  }, [token, activeView, activeChannelId, activeConversationId, setLoadingMessages]);
+   522→   522→
+   523→   523→  // Auto-scroll to bottom
+   524→   524→  useEffect(() => {
+   525→   525→    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+   526→   526→  }, [messages]);
+   527→   527→
+   528→   528→  // Send encrypted message
+   529→   529→  const handleSend = useCallback(async () => {
+   530→   530→    if (!inputText.trim() || !token || sendingMessage) return;
+   531→   531→    setSendingMessage(true);
+   532→   532→
+   533→   533→    try {
+   534→   534→      const cryptoManager = CryptoManager.getInstance();
+   535→   535→
+   536→   536→      let encryptedContent = inputText;
+   537→   537→      let iv = '';
+   538→   538→
+   539→   539→      // Encrypt the message using E2EE
+   540→   540→      if (cryptoManager.isInitialized()) {
+   541→   541→        let payload;
+   542→   542→        if (activeView === 'channels' && activeChannelId) {
+   543→   543→          payload = await cryptoManager.encryptForChannel(inputText, activeChannelId);
+   544→   544→        } else {
+   545→   545→          // For DMs, we encrypt with a demo approach (channel-style encryption for simplicity)
+   546→   546→          payload = await cryptoManager.encryptForChannel(inputText, activeConversationId || 'dm-default');
+   547→   547→        }
+   548→   548→        encryptedContent = payload.content;
+   549→   549→        iv = payload.iv;
+   550→   550→      }
+   551→   551→
+   552→   552→      // Determine the API endpoint
+   553→   553→      let apiUrl = '';
+   554→   554→      let channelId: string | undefined;
+   555→   555→      let dmId: string | undefined;
+   556→   556→
+   557→   557→      if (activeView === 'channels' && activeChannelId) {
+   558→   558→        apiUrl = `/api/channels/${activeChannelId}/messages`;
+   559→   559→        channelId = activeChannelId;
+   560→   560→      } else if (activeView === 'dm' && activeConversationId) {
+   561→   561→        apiUrl = `/api/dm/${activeConversationId}/messages`;
+   562→   562→        dmId = activeConversationId;
+   563→   563→      }
+   564→   564→
+   565→   565→      if (!apiUrl) return;
+   566→   566→
+   567→   567→      // Save via API
+   568→   568→      const res = await fetch(apiUrl, {
+   569→   569→        method: 'POST',
+   570→   570→        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+   571→   571→        body: JSON.stringify({
+   572→   572→          content: encryptedContent,
+   573→   573→          iv,
+   574→   574→          type: 'encrypted',
+   575→   575→          replyToId: replyTo?.id || null,
+   576→   576→        }),
+   577→   577→      });
+   578→   578→
+   579→   579→      const data = await res.json();
+   580→   580→
+   581→   581→      if (data.message) {
+   582→   582→        // Broadcast via WebSocket
+   583→   583→        sendMessage({
+   584→   584→          ...data.message,
+   585→   585→          senderName: user?.name || '',
+   586→   586→          senderAvatar: user?.avatar || null,
+   587→   587→          senderRole: user?.role || '',
+   588→   588→          senderDepartment: user?.department || '',
+   589→   589→        });
+   590→   590→
+   591→   591→        stopTyping(channelId ? { channelId } : { dmId });
+   592→   592→      }
+   593→   593→
+   594→   594→      setInputText('');
+   595→   595→      setReplyTo(null);
+   596→   596→      inputRef.current?.focus();
+   597→   597→    } catch (err) {
+   598→   598→      console.error('Send error:', err);
+   599→   599→    } finally {
+   600→   600→      setSendingMessage(false);
+   601→   601→    }
+   602→   602→  }, [inputText, token, activeView, activeChannelId, activeConversationId, sendingMessage, replyTo, user, sendMessage, stopTyping]);
+   603→   603→
+   604→   604→  // Typing indicator
+   605→   605→  const handleTyping = () => {
+   606→   606→    if (activeView === 'channels' && activeChannelId) {
+   607→   607→      sendTyping({ channelId: activeChannelId });
+   608→   608→    } else if (activeView === 'dm' && activeConversationId) {
+   609→   609→      sendTyping({ dmId: activeConversationId });
+   610→   610→    }
+   611→   611→
+   612→   612→    if (typingTimeoutRef.current) clearTimeout(typingTimeoutRef.current);
+   613→   613→    typingTimeoutRef.current = setTimeout(() => {
+   614→   614→      if (activeView === 'channels' && activeChannelId) {
+   615→   615→        stopTyping({ channelId: activeChannelId });
+   616→   616→      } else if (activeView === 'dm' && activeConversationId) {
+   617→   617→        stopTyping({ dmId: activeConversationId });
+   618→   618→      }
+   619→   619→    }, 2000);
+   620→   620→  };
+   621→   621→
+   622→   622→  const handleKeyDown = (e: React.KeyboardEvent) => {
+   623→   623→    if (e.key === 'Enter' && !e.shiftKey) {
+   624→   624→      e.preventDefault();
+   625→   625→      handleSend();
+   626→   626→    }
+   627→   627→  };
+   628→   628→
+   629→   629→  // Empty state
+   630→   630→  if (activeView === 'none') {
+   631→   631→    return (
+   632→   632→      <div className="flex-1 flex items-center justify-center bg-gray-50/50" dir="rtl">
+   633→   633→        <div className="text-center space-y-6 max-w-md px-6">
+   634→   634→          <div className="mx-auto w-24 h-24 bg-gradient-to-br from-emerald-100 to-teal-100 rounded-3xl flex items-center justify-center">
+   635→   635→            <Shield className="w-12 h-12 text-emerald-600" />
+   636→   636→          </div>
+   637→   637→          <div>
+   638→   638→            <h2 className="text-2xl font-bold text-gray-900 mb-2">مرحباً بك في تراسل</h2>
+   639→   639→            <p className="text-gray-500">اختر قناة أو محادثة مباشرة من القائمة الجانبية للبدء في المراسلة المشفرة.</p>
+   640→   640→          </div>
+   641→   641→          <div className="flex items-center justify-center gap-4 text-sm text-gray-400">
+   642→   642→            <div className="flex items-center gap-1.5">
+   643→   643→              <Lock className="w-4 h-4 text-emerald-500" />
+   644→   644→              <span>AES-256-GCM</span>
+   645→   645→            </div>
+   646→   646→            <div className="flex items-center gap-1.5">
+   647→   647→              <KeyRound className="w-4 h-4 text-emerald-500" />
+   648→   648→              <span>RSA-OAEP</span>
+   649→   649→            </div>
+   650→   650→            <div className="flex items-center gap-1.5">
+   651→   651→              <ShieldCheck className="w-4 h-4 text-emerald-500" />
+   652→   652→              <span>E2EE</span>
+   653→   653→            </div>
+   654→   654→          </div>
+   655→   655→        </div>
+   656→   656→      </div>
+   657→   657→    );
+   658→   658→  }
+   659→   659→
+   660→   660→  return (
+   661→   661→    <div className="flex-1 flex flex-col h-full bg-white">
+   662→   662→      {/* Channel/DM Header */}
+   663→   663→      <div className="h-14 border-b flex items-center justify-between px-4 bg-white">
+   664→   664→        <div className="flex items-center gap-3" dir="rtl">
+   665→   665→          <Button variant="ghost" size="icon" onClick={() => useChatStore.getState().toggleSidebar()} className="lg:hidden text-gray-400">
+   666→   666→            <Menu className="w-5 h-5" />
+   667→   667→          </Button>
+   668→   668→          {activeView === 'channels' && activeChannel && (
+   669→   669→            <>
+   670→   670→              <span className="text-xl">{activeChannel.icon || '#'}</span>
+   671→   671→              <div>
+   672→   672→                <h3 className="font-semibold text-gray-900 text-sm">{activeChannel.name}</h3>
+   673→   673→                {activeChannel.description && (
+   674→   674→                  <p className="text-[11px] text-gray-500">{activeChannel.description}</p>
+   675→   675→                )}
+   676→   676→              </div>
+   677→   677→              <Badge variant="secondary" className="text-[10px] h-5 mr-2">
+   678→   678→                <Users className="w-3 h-3 ml-1" />
+   679→   679→                {activeChannel.memberCount || 0}
+   680→   680→              </Badge>
+   681→   681→            </>
+   682→   682→          )}
+   683→   683→          {activeView === 'dm' && activeConversation && (
+   684→   684→            <div className="flex items-center gap-3">
+   685→   685→              <div className="relative">
+   686→   686→                <UserAvatar name={activeConversation.otherUser.name} size="md" />
+   687→   687→                <span className="absolute -bottom-0.5 -left-0.5">
+   688→   688→                  <StatusDot status={activeConversation.otherUser.status} />
+   689→   689→                </span>
+   690→   690→              </div>
+   691→   691→              <div>
+   692→   692→                <h3 className="font-semibold text-gray-900 text-sm">{activeConversation.otherUser.name}</h3>
+   693→   693→                <p className="text-[11px] text-gray-500">{activeConversation.otherUser.department || 'متصل الآن'}</p>
+   694→   694→              </div>
+   695→   695→            </div>
+   696→   696→          )}
+   697→   697→        </div>
+   698→   698→        <div className="flex items-center gap-1">
+   699→   699→          <EncryptionBadge />
+   700→   700→          <Button variant="ghost" size="icon" className="text-gray-400 h-8 w-8">
+   701→   701→            <Phone className="w-4 h-4" />
+   702→   702→          </Button>
+   703→   703→          <Button variant="ghost" size="icon" className="text-gray-400 h-8 w-8">
+   704→   704→            <Video className="w-4 h-4" />
+   705→   705→          </Button>
+   706→   706→          <Button variant="ghost" size="icon" className="text-gray-400 h-8 w-8">
+   707→   707→            <Search className="w-4 h-4" />
+   708→   708→          </Button>
+   709→   709→        </div>
+   710→   710→      </div>
+   711→   711→
+   712→   712→      {/* Reply indicator */}
+   713→   713→      {replyTo && (
+   714→   714→        <div className="px-4 py-2 bg-gray-50 border-b flex items-center justify-between" dir="rtl">
+   715→   715→          <div className="flex items-center gap-2 text-sm">
+   716→   716→            <Reply className="w-4 h-4 text-emerald-600" />
+   717→   717→            <span className="text-gray-500">رد على:</span>
+   718→   718→            <span className="font-medium text-gray-900">{replyTo.sender.name}</span>
+   719→   719→            <span className="text-gray-400 truncate max-w-[200px]">— {replyTo.content}</span>
+   720→   720→          </div>
+   721→   721→          <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => setReplyTo(null)}>
+   722→   722→            <X className="w-3 h-3" />
+   723→   723→          </Button>
+   724→   724→        </div>
+   725→   725→      )}
+   726→   726→
+   727→   727→      {/* Messages */}
+   728→   728→      <div className="flex-1 overflow-y-auto">
+   729→   729→        {loadingMessages ? (
+   730→   730→          <div className="flex items-center justify-center h-full">
+   731→   731→            <Loader2 className="w-6 h-6 text-emerald-500 animate-spin" />
+   732→   732→          </div>
+   733→   733→        ) : messages.length === 0 ? (
+   734→   734→          <div className="flex items-center justify-center h-48 text-gray-400 text-sm" dir="rtl">
+   735→   735→            <div className="text-center">
+   736→   736→              <Shield className="w-10 h-10 mx-auto mb-3 text-emerald-200" />
+   737→   737→              <p>لا توجد رسائل بعد</p>
+   738→   738→              <p className="text-xs mt-1">أرسل أول رسالة مشفرة! 🔐</p>
+   739→   739→            </div>
+   740→   740→          </div>
+   741→   741→        ) : (
+   742→   742→          <div className="py-4">
+   743→   743→            {messages.map((msg) => (
+   744→   744→              <MessageBubble
+   745→   745→                key={msg.id}
+   746→   746→                msg={msg}
+   747→   747→                isOwn={msg.senderId === user?.id}
+   748→   748→                onReply={setReplyTo}
+   749→   749→              />
+   750→   750→            ))}
+   751→   751→            <div ref={messagesEndRef} />
+   752→   752→          </div>
+   753→   753→        )}
+   754→   754→      </div>
+   755→   755→
+   756→   756→      {/* Message Input */}
+   757→   757→      <div className="border-t p-3 bg-white" dir="rtl">
+   758→   758→        <div className="flex items-center gap-2 bg-gray-50 rounded-xl border border-gray-200 focus-within:border-emerald-300 focus-within:ring-2 focus-within:ring-emerald-100 transition-all px-3 py-1.5">
+   759→   759→          <Button variant="ghost" size="icon" className="text-gray-400 h-8 w-8 flex-shrink-0">
+   760→   760→            <Paperclip className="w-4 h-4" />
+   761→   761→          </Button>
+   762→   762→          <Input
+   763→   763→            ref={inputRef}
+   764→   764→            value={inputText}
+   765→   765→            onChange={(e) => { setInputText(e.target.value); handleTyping(); }}
+   766→   766→            onKeyDown={handleKeyDown}
+   767→   767→            placeholder="اكتب رسالة مشفرة..."
+   768→   768→            className="border-0 bg-transparent focus-visible:ring-0 h-9 text-sm px-1"
+   769→   769→            disabled={sendingMessage}
+   770→   770→          />
+   771→   771→          <div className="flex items-center gap-0.5 flex-shrink-0">
+   772→   772→            <Button variant="ghost" size="icon" className="text-gray-400 h-8 w-8">
+   773→   773→              <AtSign className="w-4 h-4" />
+   774→   774→            </Button>
+   775→   775→            <Button variant="ghost" size="icon" className="text-gray-400 h-8 w-8">
+   776→   776→              <Smile className="w-4 h-4" />
+   777→   777→            </Button>
+   778→   778→            <Button
+   779→   779→              onClick={handleSend}
+   780→   780→              disabled={!inputText.trim() || sendingMessage}
+   781→   781→              className="h-8 w-8 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg flex-shrink-0"
+   782→   782→              size="icon"
+   783→   783→            >
+   784→   784→              {sendingMessage ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
+   785→   785→            </Button>
+   786→   786→          </div>
+   787→   787→        </div>
+   788→   788→        <div className="flex items-center justify-between mt-1.5 px-1">
+   789→   789→          <div className="flex items-center gap-1 text-[10px] text-gray-400">
+   790→   790→            <ShieldCheck className="w-3 h-3 text-emerald-500" />
+   791→   791→            <span>التشفير مفعّل — لا يمكن لأي جهة خارجية قراءة رسائلك</span>
+   792→   792→          </div>
+   793→   793→          <span className="text-[10px] text-gray-400">
+   794→   794→            <KeyRound className="w-3 h-3 inline" /> AES-256-GCM
+   795→   795→          </span>
+   796→   796→        </div>
+   797→   797→      </div>
+   798→   798→    </div>
+   799→   799→  );
+   800→   800→}
+   801→   801→
+   802→   802→// ========================
+   803→   803→// Main Chat Layout
+   804→   804→// ========================
+   805→   805→export default function ChatLayout() {
+   806→   806→  return (
+   807→   807→    <div className="flex h-screen bg-white overflow-hidden" dir="rtl">
+   808→   808→      <ChannelSidebar />
+   809→   809→      <ChatArea />
+   810→   810→    </div>
+   811→   811→  );
+   812→   812→}
