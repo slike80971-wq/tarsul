@@ -23,8 +23,8 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - NODE_ENV=production
-      - DATABASE_URL=file:/app/data/tarsul.db
+  - DATABASE_URL=postgresql://postgres:Z8rEIfXMNtizSJdg@db.pushaxjmmglhfjqdyoen.supabase.co:6543/postgres?pgbouncer=true
+  - DIRECT_URL=postgresql://postgres:Z8rEIfXMNtizSJdg@db.pushaxjmmglhfjqdyoen.supabase.co:5432/postgres
     volumes:
       - tarsul-data:/app/data          # Persist SQLite database
       - tarsul-uploads:/app/public/uploads  # Persist uploaded files
