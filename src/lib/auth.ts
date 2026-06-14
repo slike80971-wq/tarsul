@@ -30,4 +30,3 @@ export function verifyPassword(
 /** Generate a secure session token */
 export function generateSessionToken(): string {
   return randomBytes(32).toString('hex');
-}
