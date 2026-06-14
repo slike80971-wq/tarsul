@@ -1,6 +1,6 @@
 /**
  * Tarsul - تراسل | Database-Backed Session Store
- * Sessions persist in SQLite via Prisma — survives server restarts and HMR.
+ * Sessions persist in PostgreSQL via Prisma — survives server restarts and HMR.
  */
 
 import { db } from '@/lib/db';
