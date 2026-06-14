@@ -1,13 +1,13 @@
 // Tarsul - تراسل | Enterprise Encrypted Chat Platform
-// Database Schema for On-Premise Deployment
+// Database Schema — PostgreSQL (Supabase / Vercel)
 
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:/home/z/my-project/db/tarsul.db"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 // ========================
@@ -38,6 +38,8 @@ model User {
   tweets             Tweet[]
   tweetLikes         TweetLike[]
   sessions           Session[]
+
+  @@map("users")
 }
 
 // ========================
@@ -55,6 +57,8 @@ model KeyPair {
   isActive  Boolean  @default(true)
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("key_pairs")
 }
 
 // ========================
@@ -76,6 +80,8 @@ model Channel {
   members  ChannelMember[]
   messages Message[]
   creator  User @relation("ChannelCreator", fields: [createdBy], references: [id])
+
+  @@map("channels")
 }
 
 // ========================
@@ -94,6 +100,7 @@ model ChannelMember {
   user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([channelId, userId])
+  @@map("channel_members")
 }
 
 // ========================
@@ -112,6 +119,7 @@ model DirectMessage {
   messages Message[]
 
   @@unique([user1Id, user2Id])
+  @@map("direct_messages")
 }
 
 // ========================
@@ -140,6 +148,12 @@ model Message {
   dm      DirectMessage? @relation(fields: [dmId], references: [id], onDelete: Cascade)
   replies Message[]      @relation("MessageReplies")
   replyTo Message?       @relation("MessageReplies", fields: [replyToId], references: [id])
+
+  @@index([channelId])
+  @@index([dmId])
+  @@index([senderId])
+  @@index([createdAt])
+  @@map("messages")
 }
 
 // ========================
@@ -157,6 +171,7 @@ model Session {
 
   @@index([token])
   @@index([userId])
+  @@map("sessions")
 }
 
 // ========================
@@ -176,6 +191,10 @@ model Tweet {
   // Relations
   sender User @relation(fields: [senderId], references: [id], onDelete: Cascade)
   TweetLike TweetLike[]
+
+  @@index([senderId])
+  @@index([createdAt])
+  @@map("tweets")
 }
 
 // ========================
@@ -192,4 +211,5 @@ model TweetLike {
   user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([tweetId, userId])
+  @@map("tweet_likes")
 }
