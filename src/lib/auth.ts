@@ -1,6 +1,6 @@
 /**
  * Tarsul - تراسل | Server-Side Auth Utilities
- * Simple password hashing for the on-premise SQLite deployment.
+ * Simple password hashing for the Tarsul deployment (PostgreSQL / Supabase).
  * Uses Node.js crypto for SHA-256 + salt hashing.
  */
 
