@@ -28,4 +28,4 @@ export function verifyPassword(
 }
 
 /** Generate a secure session token */
-export function generateSessionToken(): string {
+export function generateSessionToken(): string {}
