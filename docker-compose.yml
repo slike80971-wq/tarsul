@@ -74,6 +74,3 @@ services:
   # ========================
   # Optional: PostgreSQL (for production scale)
   # Uncomment to use PostgreSQL instead of SQLite
-networks:
-  tarsul-network:
-    driver: bridge
