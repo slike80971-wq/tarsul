@@ -74,28 +74,6 @@ services:
   # ========================
   # Optional: PostgreSQL (for production scale)
   # Uncomment to use PostgreSQL instead of SQLite
-  # ========================
-  # tarsul-db:
-  #   image: postgres:16-alpine
-  #   container_name: tarsul-db
-  #   restart: unless-stopped
-  #   environment:
-  #     POSTGRES_DB: tarsul
-  #     POSTGRES_USER: tarsul
-  #     POSTGRES_PASSWORD: ${DB_PASSWORD}
-  #   volumes:
-  #     - postgres-data:/var/lib/postgresql/data
-  #   networks:
-  #     - tarsul-network
-
-volumes:
-  tarsul-data:
-    driver: local
-  tarsul-uploads:
-    driver: local
-  # postgres-data:
-  #   driver: local
-
 networks:
   tarsul-network:
     driver: bridge
