@@ -1,17 +1,6 @@
-import type { NextConfig } from "next";
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  output: 'standalone',
+}
 
-const nextConfig: NextConfig = {
-    // output: "standalone",  // ← عطّل هذا لـ Vercel | فعّله لـ Docker,
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  reactStrictMode: false,
-  allowedDevOrigins: [
-    "127.0.0.1",
-    "localhost",
-    "21.0.17.147",
-    ".space-z.ai",
-  ],
-};
-
-export default nextConfig;
+module.exports = nextConfig
