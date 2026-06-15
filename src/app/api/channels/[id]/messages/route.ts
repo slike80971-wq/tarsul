@@ -1,6 +1,6 @@
 /**
- * GET /api/channels/[id]/messages - Get messages for a channel
- * POST /api/channels/[id]/messages - Send a message to a channel
+  * POST /api/channels/[id]/messages/essageId]/pin
+ * DELETE /api/channels/[id]/messages/essageId]
  */
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
