@@ -1,5 +1,5 @@
 /**
- * Tarsul - تراسل | Server-Side Auth Utilities
+ * Tarsul — تراسل | Server-Side Auth Utilities
  * Simple password hashing for the Tarsul deployment (PostgreSQL / Supabase).
  * Uses Node.js crypto for SHA-256 + salt hashing.
  */
@@ -28,4 +28,6 @@ export function verifyPassword(
 }
 
 /** Generate a secure session token */
-export function generateSessionToken(): string {}
+export function generateSessionToken(): string {
+  return randomBytes(32).toString('hex');
+}
