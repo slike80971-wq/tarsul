@@ -1,0 +1,196 @@
+   101→prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`name`, `main`.`User`.`email`, `main`.`User`.`password`, `main`.`User`.`avatar`, `main`.`User`.`about`, `main`.`User`.`role`, `main`.`User`.`isActive`, `main`.`User`.`isVerified`, `main`.`User`.`isOnline`, `main`.`User`.`lastSeen`, `main`.`User`.`createdAt`, `main`.`User`.`updatedAt` FROM `main`.`User` WHERE (`main`.`User`.`id` = ? AND 1=1) LIMIT ? OFFSET ?
+   102→prisma:query SELECT `main`.`ConversationParticipant`.`id`, `main`.`ConversationParticipant`.`conversationId`, `main`.`ConversationParticipant`.`userId`, `main`.`ConversationParticipant`.`role`, `main`.`ConversationParticipant`.`joinedAt` FROM `main`.`ConversationParticipant` WHERE `main`.`ConversationParticipant`.`userId` IN (?) ORDER BY `main`.`ConversationParticipant`.`joinedAt` DESC LIMIT ? OFFSET ?
+   103→prisma:query SELECT `main`.`Conversation`.`id`, `main`.`Conversation`.`type`, `main`.`Conversation`.`name`, `main`.`Conversation`.`avatar`, `main`.`Conversation`.`createdAt`, `main`.`Conversation`.`updatedAt` FROM `main`.`Conversation` WHERE `main`.`Conversation`.`id` IN (?) LIMIT ? OFFSET ?
+   104→prisma:query SELECT `main`.`ConversationParticipant`.`id`, `main`.`ConversationParticipant`.`conversationId`, `main`.`ConversationParticipant`.`userId`, `main`.`ConversationParticipant`.`role`, `main`.`ConversationParticipant`.`joinedAt` FROM `main`.`ConversationParticipant` WHERE `main`.`ConversationParticipant`.`conversationId` IN (?) LIMIT ? OFFSET ?
+   105→prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`name`, `main`.`User`.`email`, `main`.`User`.`avatar`, `main`.`User`.`about`, `main`.`User`.`isOnline`, `main`.`User`.`lastSeen` FROM `main`.`User` WHERE `main`.`User`.`id` IN (?,?) LIMIT ? OFFSET ?
+   106→prisma:query SELECT `main`.`Message`.`id`, `main`.`Message`.`conversationId`, `main`.`Message`.`senderId`, `main`.`Message`.`content`, `main`.`Message`.`type`, `main`.`Message`.`mediaUrl`, `main`.`Message`.`mediaName`, `main`.`Message`.`isRead`, `main`.`Message`.`createdAt` FROM `main`.`Message` WHERE `main`.`Message`.`conversationId` IN (?) ORDER BY `main`.`Message`.`createdAt` DESC LIMIT ? OFFSET ?
+   107→prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`name`, `main`.`User`.`avatar` FROM `main`.`User` WHERE `main`.`User`.`id` IN (?) LIMIT ? OFFSET ?
+   108→ GET /api/auth/user 200 in 12ms (compile: 1803µs, render: 10ms)
+   109→prisma:query SELECT `main`.`ConversationParticipant`.`id`, `main`.`ConversationParticipant`.`conversationId`, `main`.`ConversationParticipant`.`userId`, `main`.`ConversationParticipant`.`role`, `main`.`ConversationParticipant`.`joinedAt` FROM `main`.`ConversationParticipant` WHERE ((`main`.`ConversationParticipant`.`conversationId` = ? AND `main`.`ConversationParticipant`.`userId` = ?) AND 1=1) LIMIT ? OFFSET ?
+   110→prisma:query SELECT `main`.`Conversation`.`id`, `main`.`Conversation`.`type`, `main`.`Conversation`.`name`, `main`.`Conversation`.`avatar`, `main`.`Conversation`.`createdAt`, `main`.`Conversation`.`updatedAt` FROM `main`.`Conversation` WHERE (`main`.`Conversation`.`id` = ? AND 1=1) LIMIT ? OFFSET ?
+   111→prisma:query SELECT `main`.`ConversationParticipant`.`id`, `main`.`ConversationParticipant`.`conversationId`, `main`.`ConversationParticipant`.`userId`, `main`.`ConversationParticipant`.`role`, `main`.`ConversationParticipant`.`joinedAt` FROM `main`.`ConversationParticipant` WHERE `main`.`ConversationParticipant`.`conversationId` IN (?) LIMIT ? OFFSET ?
+   112→prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`name`, `main`.`User`.`avatar`, `main`.`User`.`isOnline`, `main`.`User`.`lastSeen` FROM `main`.`User` WHERE `main`.`User`.`id` IN (?,?) LIMIT ? OFFSET ?
+   113→prisma:query SELECT `main`.`Message`.`id`, `main`.`Message`.`conversationId`, `main`.`Message`.`senderId`, `main`.`Message`.`content`, `main`.`Message`.`type`, `main`.`Message`.`mediaUrl`, `main`.`Message`.`mediaName`, `main`.`Message`.`isRead`, `main`.`Message`.`createdAt` FROM `main`.`Message` WHERE `main`.`Message`.`conversationId` = ? ORDER BY `main`.`Message`.`createdAt` ASC LIMIT ? OFFSET ?
+   114→prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`name`, `main`.`User`.`avatar` FROM `main`.`User` WHERE `main`.`User`.`id` IN (?) LIMIT ? OFFSET ?
+   115→ GET /api/conversations/cmqimig4r0000n5njiurdp0f2 200 in 34ms (compile: 19ms, render: 15ms)
+   116→ GET /api/auth/csrf 200 in 37ms (compile: 17ms, render: 20ms)
+   117→ GET / 200 in 18ms (compile: 4ms, render: 14ms)
+   118→ POST /api/auth/signout 200 in 10ms (compile: 3ms, render: 7ms)
+   119→ GET / 200 in 59ms (compile: 8ms, render: 51ms)
+   120→ GET /api/auth/session 200 in 7ms (compile: 1550µs, render: 5ms)
+   121→ GET /api/auth/csrf 200 in 24ms (compile: 17ms, render: 7ms)
+   122→prisma:query SELECT 1
+   123→prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`name`, `main`.`User`.`email`, `main`.`User`.`password`, `main`.`User`.`avatar`, `main`.`User`.`about`, `main`.`User`.`role`, `main`.`User`.`isActive`, `main`.`User`.`isVerified`, `main`.`User`.`isOnline`, `main`.`User`.`lastSeen`, `main`.`User`.`createdAt`, `main`.`User`.`updatedAt` FROM `main`.`User` WHERE (`main`.`User`.`email` = ? AND 1=1) LIMIT ? OFFSET ?
+   124→ POST /api/auth/callback/credentials 302 in 290ms (compile: 1575µs, render: 289ms)
+   125→ GET / 200 in 63ms (compile: 6ms, render: 57ms)
+   126→ GET / 200 in 36ms (compile: 3ms, render: 33ms)
+   127→ GET / 200 in 23ms (compile: 2ms, render: 20ms)
+   128→ GET /api/auth/session 200 in 24ms (compile: 18ms, render: 7ms)
+   129→prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`name`, `main`.`User`.`email`, `main`.`User`.`password`, `main`.`User`.`avatar`, `main`.`User`.`about`, `main`.`User`.`role`, `main`.`User`.`isActive`, `main`.`User`.`isVerified`, `main`.`User`.`isOnline`, `main`.`User`.`lastSeen`, `main`.`User`.`createdAt`, `main`.`User`.`updatedAt` FROM `main`.`User` WHERE (`main`.`User`.`id` = ? AND 1=1) LIMIT ? OFFSET ?
+   130→prisma:query SELECT `main`.`ConversationParticipant`.`id`, `main`.`ConversationParticipant`.`conversationId`, `main`.`ConversationParticipant`.`userId`, `main`.`ConversationParticipant`.`role`, `main`.`ConversationParticipant`.`joinedAt` FROM `main`.`ConversationParticipant` WHERE `main`.`ConversationParticipant`.`userId` IN (?) ORDER BY `main`.`ConversationParticipant`.`joinedAt` DESC LIMIT ? OFFSET ?
+   131→prisma:query SELECT `main`.`Conversation`.`id`, `main`.`Conversation`.`type`, `main`.`Conversation`.`name`, `main`.`Conversation`.`avatar`, `main`.`Conversation`.`createdAt`, `main`.`Conversation`.`updatedAt` FROM `main`.`Conversation` WHERE `main`.`Conversation`.`id` IN (?) LIMIT ? OFFSET ?
+   132→prisma:query SELECT `main`.`ConversationParticipant`.`id`, `main`.`ConversationParticipant`.`conversationId`, `main`.`ConversationParticipant`.`userId`, `main`.`ConversationParticipant`.`role`, `main`.`ConversationParticipant`.`joinedAt` FROM `main`.`ConversationParticipant` WHERE `main`.`ConversationParticipant`.`conversationId` IN (?) LIMIT ? OFFSET ?
+   133→prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`name`, `main`.`User`.`email`, `main`.`User`.`avatar`, `main`.`User`.`about`, `main`.`User`.`isOnline`, `main`.`User`.`lastSeen` FROM `main`.`User` WHERE `main`.`User`.`id` IN (?,?) LIMIT ? OFFSET ?
+   134→prisma:query SELECT `main`.`Message`.`id`, `main`.`Message`.`conversationId`, `main`.`Message`.`senderId`, `main`.`Message`.`content`, `main`.`Message`.`type`, `main`.`Message`.`mediaUrl`, `main`.`Message`.`mediaName`, `main`.`Message`.`isRead`, `main`.`Message`.`createdAt` FROM `main`.`Message` WHERE `main`.`Message`.`conversationId` IN (?) ORDER BY `main`.`Message`.`createdAt` DESC LIMIT ? OFFSET ?
+   135→prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`name`, `main`.`User`.`avatar` FROM `main`.`User` WHERE `main`.`User`.`id` IN (?) LIMIT ? OFFSET ?
+   136→ GET /api/auth/user 200 in 11ms (compile: 1587µs, render: 9ms)
+   137→prisma:query SELECT `main`.`ConversationParticipant`.`id`, `main`.`ConversationParticipant`.`conversationId`, `main`.`ConversationParticipant`.`userId`, `main`.`ConversationParticipant`.`role`, `main`.`ConversationParticipant`.`joinedAt` FROM `main`.`ConversationParticipant` WHERE ((`main`.`ConversationParticipant`.`conversationId` = ? AND `main`.`ConversationParticipant`.`userId` = ?) AND 1=1) LIMIT ? OFFSET ?
+   138→prisma:query SELECT `main`.`Conversation`.`id`, `main`.`Conversation`.`type`, `main`.`Conversation`.`name`, `main`.`Conversation`.`avatar`, `main`.`Conversation`.`createdAt`, `main`.`Conversation`.`updatedAt` FROM `main`.`Conversation` WHERE (`main`.`Conversation`.`id` = ? AND 1=1) LIMIT ? OFFSET ?
+   139→prisma:query SELECT `main`.`ConversationParticipant`.`id`, `main`.`ConversationParticipant`.`conversationId`, `main`.`ConversationParticipant`.`userId`, `main`.`ConversationParticipant`.`role`, `main`.`ConversationParticipant`.`joinedAt` FROM `main`.`ConversationParticipant` WHERE `main`.`ConversationParticipant`.`conversationId` IN (?) LIMIT ? OFFSET ?
+   140→prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`name`, `main`.`User`.`avatar`, `main`.`User`.`isOnline`, `main`.`User`.`lastSeen` FROM `main`.`User` WHERE `main`.`User`.`id` IN (?,?) LIMIT ? OFFSET ?
+   141→prisma:query SELECT `main`.`Message`.`id`, `main`.`Message`.`conversationId`, `main`.`Message`.`senderId`, `main`.`Message`.`content`, `main`.`Message`.`type`, `main`.`Message`.`mediaUrl`, `main`.`Message`.`mediaName`, `main`.`Message`.`isRead`, `main`.`Message`.`createdAt` FROM `main`.`Message` WHERE `main`.`Message`.`conversationId` = ? ORDER BY `main`.`Message`.`createdAt` ASC LIMIT ? OFFSET ?
+   142→prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`name`, `main`.`User`.`avatar` FROM `main`.`User` WHERE `main`.`User`.`id` IN (?) LIMIT ? OFFSET ?
+   143→prisma:query BEGIN IMMEDIATE
+   144→prisma:query UPDATE `main`.`Message` SET `isRead` = ? WHERE `main`.`Message`.`id` IN (?)
+   145→prisma:query COMMIT
+   146→ GET /api/conversations/cmqimig4r0000n5njiurdp0f2 200 in 32ms (compile: 19ms, render: 12ms)
+   147→prisma:query SELECT 1
+   148→prisma:query SELECT `main`.`ConversationParticipant`.`id`, `main`.`ConversationParticipant`.`conversationId`, `main`.`ConversationParticipant`.`userId`, `main`.`ConversationParticipant`.`role`, `main`.`ConversationParticipant`.`joinedAt` FROM `main`.`ConversationParticipant` WHERE ((`main`.`ConversationParticipant`.`conversationId` = ? AND `main`.`ConversationParticipant`.`userId` = ?) AND 1=1) LIMIT ? OFFSET ?
+   149→prisma:query BEGIN IMMEDIATE
+   150→prisma:query INSERT INTO `main`.`Message` (`id`, `conversationId`, `senderId`, `content`, `type`, `mediaUrl`, `mediaName`, `isRead`, `createdAt`) VALUES (?,?,?,?,?,?,?,?,?) RETURNING `id` AS `id`
+   151→prisma:query SELECT `main`.`Message`.`id`, `main`.`Message`.`conversationId`, `main`.`Message`.`senderId`, `main`.`Message`.`content`, `main`.`Message`.`type`, `main`.`Message`.`mediaUrl`, `main`.`Message`.`mediaName`, `main`.`Message`.`isRead`, `main`.`Message`.`createdAt` FROM `main`.`Message` WHERE `main`.`Message`.`id` = ? LIMIT ? OFFSET ?
+   152→prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`name`, `main`.`User`.`avatar` FROM `main`.`User` WHERE `main`.`User`.`id` IN (?) LIMIT ? OFFSET ?
+   153→prisma:query COMMIT
+   154→prisma:query UPDATE `main`.`Conversation` SET `updatedAt` = ? WHERE (`main`.`Conversation`.`id` = ? AND 1=1) RETURNING `id` AS `id`, `type` AS `type`, `name` AS `name`, `avatar` AS `avatar`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`
+   155→ POST /api/messages 200 in 14ms (compile: 2ms, render: 12ms)
+   156→ GET / 200 in 32ms (compile: 4ms, render: 27ms)
+   157→ GET /api/auth/session 200 in 28ms (compile: 19ms, render: 9ms)
+   158→prisma:query SELECT 1
+   159→prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`name`, `main`.`User`.`email`, `main`.`User`.`password`, `main`.`User`.`avatar`, `main`.`User`.`about`, `main`.`User`.`role`, `main`.`User`.`isActive`, `main`.`User`.`isVerified`, `main`.`User`.`isOnline`, `main`.`User`.`lastSeen`, `main`.`User`.`createdAt`, `main`.`User`.`updatedAt` FROM `main`.`User` WHERE (`main`.`User`.`id` = ? AND 1=1) LIMIT ? OFFSET ?
+   160→prisma:query SELECT `main`.`ConversationParticipant`.`id`, `main`.`ConversationParticipant`.`conversationId`, `main`.`ConversationParticipant`.`userId`, `main`.`ConversationParticipant`.`role`, `main`.`ConversationParticipant`.`joinedAt` FROM `main`.`ConversationParticipant` WHERE `main`.`ConversationParticipant`.`userId` IN (?) ORDER BY `main`.`ConversationParticipant`.`joinedAt` DESC LIMIT ? OFFSET ?
+   161→prisma:query SELECT `main`.`Conversation`.`id`, `main`.`Conversation`.`type`, `main`.`Conversation`.`name`, `main`.`Conversation`.`avatar`, `main`.`Conversation`.`createdAt`, `main`.`Conversation`.`updatedAt` FROM `main`.`Conversation` WHERE `main`.`Conversation`.`id` IN (?) LIMIT ? OFFSET ?
+   162→prisma:query SELECT `main`.`ConversationParticipant`.`id`, `main`.`ConversationParticipant`.`conversationId`, `main`.`ConversationParticipant`.`userId`, `main`.`ConversationParticipant`.`role`, `main`.`ConversationParticipant`.`joinedAt` FROM `main`.`ConversationParticipant` WHERE `main`.`ConversationParticipant`.`conversationId` IN (?) LIMIT ? OFFSET ?
+   163→prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`name`, `main`.`User`.`email`, `main`.`User`.`avatar`, `main`.`User`.`about`, `main`.`User`.`isOnline`, `main`.`User`.`lastSeen` FROM `main`.`User` WHERE `main`.`User`.`id` IN (?,?) LIMIT ? OFFSET ?
+   164→prisma:query SELECT `main`.`Message`.`id`, `main`.`Message`.`conversationId`, `main`.`Message`.`senderId`, `main`.`Message`.`content`, `main`.`Message`.`type`, `main`.`Message`.`mediaUrl`, `main`.`Message`.`mediaName`, `main`.`Message`.`isRead`, `main`.`Message`.`createdAt` FROM `main`.`Message` WHERE `main`.`Message`.`conversationId` IN (?) ORDER BY `main`.`Message`.`createdAt` DESC LIMIT ? OFFSET ?
+   165→prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`name`, `main`.`User`.`avatar` FROM `main`.`User` WHERE `main`.`User`.`id` IN (?) LIMIT ? OFFSET ?
+   166→ GET /api/auth/user 200 in 13ms (compile: 2ms, render: 10ms)
+   167→prisma:query SELECT `main`.`ConversationParticipant`.`id`, `main`.`ConversationParticipant`.`conversationId`, `main`.`ConversationParticipant`.`userId`, `main`.`ConversationParticipant`.`role`, `main`.`ConversationParticipant`.`joinedAt` FROM `main`.`ConversationParticipant` WHERE ((`main`.`ConversationParticipant`.`conversationId` = ? AND `main`.`ConversationParticipant`.`userId` = ?) AND 1=1) LIMIT ? OFFSET ?
+   168→prisma:query SELECT `main`.`Conversation`.`id`, `main`.`Conversation`.`type`, `main`.`Conversation`.`name`, `main`.`Conversation`.`avatar`, `main`.`Conversation`.`createdAt`, `main`.`Conversation`.`updatedAt` FROM `main`.`Conversation` WHERE (`main`.`Conversation`.`id` = ? AND 1=1) LIMIT ? OFFSET ?
+   169→prisma:query SELECT `main`.`ConversationParticipant`.`id`, `main`.`ConversationParticipant`.`conversationId`, `main`.`ConversationParticipant`.`userId`, `main`.`ConversationParticipant`.`role`, `main`.`ConversationParticipant`.`joinedAt` FROM `main`.`ConversationParticipant` WHERE `main`.`ConversationParticipant`.`conversationId` IN (?) LIMIT ? OFFSET ?
+   170→prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`name`, `main`.`User`.`avatar`, `main`.`User`.`isOnline`, `main`.`User`.`lastSeen` FROM `main`.`User` WHERE `main`.`User`.`id` IN (?,?) LIMIT ? OFFSET ?
+   171→prisma:query SELECT `main`.`Message`.`id`, `main`.`Message`.`conversationId`, `main`.`Message`.`senderId`, `main`.`Message`.`content`, `main`.`Message`.`type`, `main`.`Message`.`mediaUrl`, `main`.`Message`.`mediaName`, `main`.`Message`.`isRead`, `main`.`Message`.`createdAt` FROM `main`.`Message` WHERE `main`.`Message`.`conversationId` = ? ORDER BY `main`.`Message`.`createdAt` ASC LIMIT ? OFFSET ?
+   172→prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`name`, `main`.`User`.`avatar` FROM `main`.`User` WHERE `main`.`User`.`id` IN (?,?) LIMIT ? OFFSET ?
+   173→ GET /api/conversations/cmqimig4r0000n5njiurdp0f2 200 in 30ms (compile: 18ms, render: 12ms)
+   174→ GET /api/auth/csrf 200 in 27ms (compile: 19ms, render: 8ms)
+   175→ POST /api/auth/callback/credentials 302 in 10ms (compile: 3ms, render: 7ms)
+   176→✓ Compiled in 179ms
+   177→✓ Compiled in 139ms
+   178→prisma:query SELECT 1
+   179→prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`name`, `main`.`User`.`email`, `main`.`User`.`password`, `main`.`User`.`avatar`, `main`.`User`.`about`, `main`.`User`.`role`, `main`.`User`.`isActive`, `main`.`User`.`isVerified`, `main`.`User`.`isOnline`, `main`.`User`.`lastSeen`, `main`.`User`.`createdAt`, `main`.`User`.`updatedAt` FROM `main`.`User` WHERE (`main`.`User`.`id` = ? AND 1=1) LIMIT ? OFFSET ?
+   180→prisma:query SELECT `main`.`ConversationParticipant`.`id`, `main`.`ConversationParticipant`.`conversationId`, `main`.`ConversationParticipant`.`userId`, `main`.`ConversationParticipant`.`role`, `main`.`ConversationParticipant`.`joinedAt` FROM `main`.`ConversationParticipant` WHERE `main`.`ConversationParticipant`.`userId` IN (?) ORDER BY `main`.`ConversationParticipant`.`joinedAt` DESC LIMIT ? OFFSET ?
+   181→prisma:query SELECT `main`.`Conversation`.`id`, `main`.`Conversation`.`type`, `main`.`Conversation`.`name`, `main`.`Conversation`.`avatar`, `main`.`Conversation`.`createdAt`, `main`.`Conversation`.`updatedAt` FROM `main`.`Conversation` WHERE `main`.`Conversation`.`id` IN (?) LIMIT ? OFFSET ?
+   182→prisma:query SELECT `main`.`ConversationParticipant`.`id`, `main`.`ConversationParticipant`.`conversationId`, `main`.`ConversationParticipant`.`userId`, `main`.`ConversationParticipant`.`role`, `main`.`ConversationParticipant`.`joinedAt` FROM `main`.`ConversationParticipant` WHERE `main`.`ConversationParticipant`.`conversationId` IN (?) LIMIT ? OFFSET ?
+   183→prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`name`, `main`.`User`.`email`, `main`.`User`.`avatar`, `main`.`User`.`about`, `main`.`User`.`isOnline`, `main`.`User`.`lastSeen` FROM `main`.`User` WHERE `main`.`User`.`id` IN (?,?) LIMIT ? OFFSET ?
+   184→prisma:query SELECT `main`.`Message`.`id`, `main`.`Message`.`conversationId`, `main`.`Message`.`senderId`, `main`.`Message`.`content`, `main`.`Message`.`type`, `main`.`Message`.`mediaUrl`, `main`.`Message`.`mediaName`, `main`.`Message`.`isRead`, `main`.`Message`.`createdAt` FROM `main`.`Message` WHERE `main`.`Message`.`conversationId` IN (?) ORDER BY `main`.`Message`.`createdAt` DESC LIMIT ? OFFSET ?
+   185→prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`name`, `main`.`User`.`avatar` FROM `main`.`User` WHERE `main`.`User`.`id` IN (?) LIMIT ? OFFSET ?
+   186→ GET /api/auth/user 200 in 78ms (compile: 2ms, render: 76ms)
+   187→ GET / 200 in 80ms (compile: 49ms, render: 31ms)
+   188→ GET / 200 in 158ms (compile: 9ms, render: 149ms)
+   189→ GET /api/auth/session 200 in 35ms (compile: 19ms, render: 17ms)
+   190→prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`name`, `main`.`User`.`email`, `main`.`User`.`password`, `main`.`User`.`avatar`, `main`.`User`.`about`, `main`.`User`.`role`, `main`.`User`.`isActive`, `main`.`User`.`isVerified`, `main`.`User`.`isOnline`, `main`.`User`.`lastSeen`, `main`.`User`.`createdAt`, `main`.`User`.`updatedAt` FROM `main`.`User` WHERE (`main`.`User`.`id` = ? AND 1=1) LIMIT ? OFFSET ?
+   191→prisma:query SELECT `main`.`ConversationParticipant`.`id`, `main`.`ConversationParticipant`.`conversationId`, `main`.`ConversationParticipant`.`userId`, `main`.`ConversationParticipant`.`role`, `main`.`ConversationParticipant`.`joinedAt` FROM `main`.`ConversationParticipant` WHERE `main`.`ConversationParticipant`.`userId` IN (?) ORDER BY `main`.`ConversationParticipant`.`joinedAt` DESC LIMIT ? OFFSET ?
+   192→prisma:query SELECT `main`.`Conversation`.`id`, `main`.`Conversation`.`type`, `main`.`Conversation`.`name`, `main`.`Conversation`.`avatar`, `main`.`Conversation`.`createdAt`, `main`.`Conversation`.`updatedAt` FROM `main`.`Conversation` WHERE `main`.`Conversation`.`id` IN (?) LIMIT ? OFFSET ?
+   193→prisma:query SELECT `main`.`ConversationParticipant`.`id`, `main`.`ConversationParticipant`.`conversationId`, `main`.`ConversationParticipant`.`userId`, `main`.`ConversationParticipant`.`role`, `main`.`ConversationParticipant`.`joinedAt` FROM `main`.`ConversationParticipant` WHERE `main`.`ConversationParticipant`.`conversationId` IN (?) LIMIT ? OFFSET ?
+   194→prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`name`, `main`.`User`.`email`, `main`.`User`.`avatar`, `main`.`User`.`about`, `main`.`User`.`isOnline`, `main`.`User`.`lastSeen` FROM `main`.`User` WHERE `main`.`User`.`id` IN (?,?) LIMIT ? OFFSET ?
+   195→prisma:query SELECT `main`.`Message`.`id`, `main`.`Message`.`conversationId`, `main`.`Message`.`senderId`, `main`.`Message`.`content`, `main`.`Message`.`type`, `main`.`Message`.`mediaUrl`, `main`.`Message`.`mediaName`, `main`.`Message`.`isRead`, `main`.`Message`.`createdAt` FROM `main`.`Message` WHERE `main`.`Message`.`conversationId` IN (?) ORDER BY `main`.`Message`.`createdAt` DESC LIMIT ? OFFSET ?
+   196→prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`name`, `main`.`User`.`avatar` FROM `main`.`User` WHERE `main`.`User`.`id` IN (?) LIMIT ? OFFSET ?
+   197→ GET /api/auth/user 200 in 12ms (compile: 1924µs, render: 10ms)
+   198→prisma:query SELECT `main`.`ConversationParticipant`.`id`, `main`.`ConversationParticipant`.`conversationId`, `main`.`ConversationParticipant`.`userId`, `main`.`ConversationParticipant`.`role`, `main`.`ConversationParticipant`.`joinedAt` FROM `main`.`ConversationParticipant` WHERE ((`main`.`ConversationParticipant`.`conversationId` = ? AND `main`.`ConversationParticipant`.`userId` = ?) AND 1=1) LIMIT ? OFFSET ?
+   199→prisma:query SELECT `main`.`Conversation`.`id`, `main`.`Conversation`.`type`, `main`.`Conversation`.`name`, `main`.`Conversation`.`avatar`, `main`.`Conversation`.`createdAt`, `main`.`Conversation`.`updatedAt` FROM `main`.`Conversation` WHERE (`main`.`Conversation`.`id` = ? AND 1=1) LIMIT ? OFFSET ?
+   200→prisma:query SELECT `main`.`ConversationParticipant`.`id`, `main`.`ConversationParticipant`.`conversationId`, `main`.`ConversationParticipant`.`userId`, `main`.`ConversationParticipant`.`role`, `main`.`ConversationParticipant`.`joinedAt` FROM `main`.`ConversationParticipant` WHERE `main`.`ConversationParticipant`.`conversationId` IN (?) LIMIT ? OFFSET ?
+   201→prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`name`, `main`.`User`.`avatar`, `main`.`User`.`isOnline`, `main`.`User`.`lastSeen` FROM `main`.`User` WHERE `main`.`User`.`id` IN (?,?) LIMIT ? OFFSET ?
+   202→prisma:query SELECT `main`.`Message`.`id`, `main`.`Message`.`conversationId`, `main`.`Message`.`senderId`, `main`.`Message`.`content`, `main`.`Message`.`type`, `main`.`Message`.`mediaUrl`, `main`.`Message`.`mediaName`, `main`.`Message`.`isRead`, `main`.`Message`.`createdAt` FROM `main`.`Message` WHERE `main`.`Message`.`conversationId` = ? ORDER BY `main`.`Message`.`createdAt` ASC LIMIT ? OFFSET ?
+   203→prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`name`, `main`.`User`.`avatar` FROM `main`.`User` WHERE `main`.`User`.`id` IN (?,?) LIMIT ? OFFSET ?
+   204→ GET /api/conversations/cmqimig4r0000n5njiurdp0f2 200 in 31ms (compile: 18ms, render: 13ms)
+   205→ GET / 200 in 34ms (compile: 6ms, render: 28ms)
+   206→ GET /api/auth/session 200 in 25ms (compile: 17ms, render: 8ms)
+   207→prisma:query SELECT 1
+   208→prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`name`, `main`.`User`.`email`, `main`.`User`.`password`, `main`.`User`.`avatar`, `main`.`User`.`about`, `main`.`User`.`role`, `main`.`User`.`isActive`, `main`.`User`.`isVerified`, `main`.`User`.`isOnline`, `main`.`User`.`lastSeen`, `main`.`User`.`createdAt`, `main`.`User`.`updatedAt` FROM `main`.`User` WHERE (`main`.`User`.`id` = ? AND 1=1) LIMIT ? OFFSET ?
+   209→prisma:query SELECT `main`.`ConversationParticipant`.`id`, `main`.`ConversationParticipant`.`conversationId`, `main`.`ConversationParticipant`.`userId`, `main`.`ConversationParticipant`.`role`, `main`.`ConversationParticipant`.`joinedAt` FROM `main`.`ConversationParticipant` WHERE `main`.`ConversationParticipant`.`userId` IN (?) ORDER BY `main`.`ConversationParticipant`.`joinedAt` DESC LIMIT ? OFFSET ?
+   210→prisma:query SELECT `main`.`Conversation`.`id`, `main`.`Conversation`.`type`, `main`.`Conversation`.`name`, `main`.`Conversation`.`avatar`, `main`.`Conversation`.`createdAt`, `main`.`Conversation`.`updatedAt` FROM `main`.`Conversation` WHERE `main`.`Conversation`.`id` IN (?) LIMIT ? OFFSET ?
+   211→prisma:query SELECT `main`.`ConversationParticipant`.`id`, `main`.`ConversationParticipant`.`conversationId`, `main`.`ConversationParticipant`.`userId`, `main`.`ConversationParticipant`.`role`, `main`.`ConversationParticipant`.`joinedAt` FROM `main`.`ConversationParticipant` WHERE `main`.`ConversationParticipant`.`conversationId` IN (?) LIMIT ? OFFSET ?
+   212→prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`name`, `main`.`User`.`email`, `main`.`User`.`avatar`, `main`.`User`.`about`, `main`.`User`.`isOnline`, `main`.`User`.`lastSeen` FROM `main`.`User` WHERE `main`.`User`.`id` IN (?,?) LIMIT ? OFFSET ?
+   213→prisma:query SELECT `main`.`Message`.`id`, `main`.`Message`.`conversationId`, `main`.`Message`.`senderId`, `main`.`Message`.`content`, `main`.`Message`.`type`, `main`.`Message`.`mediaUrl`, `main`.`Message`.`mediaName`, `main`.`Message`.`isRead`, `main`.`Message`.`createdAt` FROM `main`.`Message` WHERE `main`.`Message`.`conversationId` IN (?) ORDER BY `main`.`Message`.`createdAt` DESC LIMIT ? OFFSET ?
+   214→prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`name`, `main`.`User`.`avatar` FROM `main`.`User` WHERE `main`.`User`.`id` IN (?) LIMIT ? OFFSET ?
+   215→ GET /api/auth/user 200 in 17ms (compile: 3ms, render: 14ms)
+   216→ GET / 200 in 27ms (compile: 4ms, render: 23ms)
+   217→ GET /api/auth/session 200 in 24ms (compile: 17ms, render: 7ms)
+   218→prisma:query SELECT 1
+   219→prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`name`, `main`.`User`.`email`, `main`.`User`.`password`, `main`.`User`.`avatar`, `main`.`User`.`about`, `main`.`User`.`role`, `main`.`User`.`isActive`, `main`.`User`.`isVerified`, `main`.`User`.`isOnline`, `main`.`User`.`lastSeen`, `main`.`User`.`createdAt`, `main`.`User`.`updatedAt` FROM `main`.`User` WHERE (`main`.`User`.`id` = ? AND 1=1) LIMIT ? OFFSET ?
+   220→prisma:query SELECT `main`.`ConversationParticipant`.`id`, `main`.`ConversationParticipant`.`conversationId`, `main`.`ConversationParticipant`.`userId`, `main`.`ConversationParticipant`.`role`, `main`.`ConversationParticipant`.`joinedAt` FROM `main`.`ConversationParticipant` WHERE `main`.`ConversationParticipant`.`userId` IN (?) ORDER BY `main`.`ConversationParticipant`.`joinedAt` DESC LIMIT ? OFFSET ?
+   221→prisma:query SELECT `main`.`Conversation`.`id`, `main`.`Conversation`.`type`, `main`.`Conversation`.`name`, `main`.`Conversation`.`avatar`, `main`.`Conversation`.`createdAt`, `main`.`Conversation`.`updatedAt` FROM `main`.`Conversation` WHERE `main`.`Conversation`.`id` IN (?) LIMIT ? OFFSET ?
+   222→prisma:query SELECT `main`.`ConversationParticipant`.`id`, `main`.`ConversationParticipant`.`conversationId`, `main`.`ConversationParticipant`.`userId`, `main`.`ConversationParticipant`.`role`, `main`.`ConversationParticipant`.`joinedAt` FROM `main`.`ConversationParticipant` WHERE `main`.`ConversationParticipant`.`conversationId` IN (?) LIMIT ? OFFSET ?
+   223→prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`name`, `main`.`User`.`email`, `main`.`User`.`avatar`, `main`.`User`.`about`, `main`.`User`.`isOnline`, `main`.`User`.`lastSeen` FROM `main`.`User` WHERE `main`.`User`.`id` IN (?,?) LIMIT ? OFFSET ?
+   224→prisma:query SELECT `main`.`Message`.`id`, `main`.`Message`.`conversationId`, `main`.`Message`.`senderId`, `main`.`Message`.`content`, `main`.`Message`.`type`, `main`.`Message`.`mediaUrl`, `main`.`Message`.`mediaName`, `main`.`Message`.`isRead`, `main`.`Message`.`createdAt` FROM `main`.`Message` WHERE `main`.`Message`.`conversationId` IN (?) ORDER BY `main`.`Message`.`createdAt` DESC LIMIT ? OFFSET ?
+   225→prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`name`, `main`.`User`.`avatar` FROM `main`.`User` WHERE `main`.`User`.`id` IN (?) LIMIT ? OFFSET ?
+   226→ GET /api/auth/user 200 in 11ms (compile: 1474µs, render: 10ms)
+   227→ GET / 200 in 29ms (compile: 4ms, render: 25ms)
+   228→ GET /api/auth/session 200 in 23ms (compile: 17ms, render: 6ms)
+   229→prisma:query SELECT 1
+   230→prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`name`, `main`.`User`.`email`, `main`.`User`.`password`, `main`.`User`.`avatar`, `main`.`User`.`about`, `main`.`User`.`role`, `main`.`User`.`isActive`, `main`.`User`.`isVerified`, `main`.`User`.`isOnline`, `main`.`User`.`lastSeen`, `main`.`User`.`createdAt`, `main`.`User`.`updatedAt` FROM `main`.`User` WHERE (`main`.`User`.`id` = ? AND 1=1) LIMIT ? OFFSET ?
+   231→prisma:query SELECT `main`.`ConversationParticipant`.`id`, `main`.`ConversationParticipant`.`conversationId`, `main`.`ConversationParticipant`.`userId`, `main`.`ConversationParticipant`.`role`, `main`.`ConversationParticipant`.`joinedAt` FROM `main`.`ConversationParticipant` WHERE `main`.`ConversationParticipant`.`userId` IN (?) ORDER BY `main`.`ConversationParticipant`.`joinedAt` DESC LIMIT ? OFFSET ?
+   232→prisma:query SELECT `main`.`Conversation`.`id`, `main`.`Conversation`.`type`, `main`.`Conversation`.`name`, `main`.`Conversation`.`avatar`, `main`.`Conversation`.`createdAt`, `main`.`Conversation`.`updatedAt` FROM `main`.`Conversation` WHERE `main`.`Conversation`.`id` IN (?) LIMIT ? OFFSET ?
+   233→prisma:query SELECT `main`.`ConversationParticipant`.`id`, `main`.`ConversationParticipant`.`conversationId`, `main`.`ConversationParticipant`.`userId`, `main`.`ConversationParticipant`.`role`, `main`.`ConversationParticipant`.`joinedAt` FROM `main`.`ConversationParticipant` WHERE `main`.`ConversationParticipant`.`conversationId` IN (?) LIMIT ? OFFSET ?
+   234→prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`name`, `main`.`User`.`email`, `main`.`User`.`avatar`, `main`.`User`.`about`, `main`.`User`.`isOnline`, `main`.`User`.`lastSeen` FROM `main`.`User` WHERE `main`.`User`.`id` IN (?,?) LIMIT ? OFFSET ?
+   235→prisma:query SELECT `main`.`Message`.`id`, `main`.`Message`.`conversationId`, `main`.`Message`.`senderId`, `main`.`Message`.`content`, `main`.`Message`.`type`, `main`.`Message`.`mediaUrl`, `main`.`Message`.`mediaName`, `main`.`Message`.`isRead`, `main`.`Message`.`createdAt` FROM `main`.`Message` WHERE `main`.`Message`.`conversationId` IN (?) ORDER BY `main`.`Message`.`createdAt` DESC LIMIT ? OFFSET ?
+   236→prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`name`, `main`.`User`.`avatar` FROM `main`.`User` WHERE `main`.`User`.`id` IN (?) LIMIT ? OFFSET ?
+   237→ GET /api/auth/user 200 in 11ms (compile: 1649µs, render: 9ms)
+   238→ GET / 200 in 52ms (compile: 4ms, render: 48ms)
+   239→ GET / 200 in 22ms (compile: 3ms, render: 19ms)
+   240→ GET / 200 in 28ms (compile: 6ms, render: 22ms)
+   241→ GET / 200 in 26ms (compile: 4ms, render: 22ms)
+   242→[next-auth][error][JWT_SESSION_ERROR] 
+   243→https://next-auth.js.org/errors#jwt_session_error decryption operation failed {
+   244→  message: 'decryption operation failed',
+   245→  stack: 'JWEDecryptionFailed: decryption operation failed\n' +
+   246→    '    at gcmDecrypt (/home/z/my-project/.next/dev/server/chunks/node_modules_jose_dist_node_cjs_bd88468e._.js:734:15)\n' +
+   247→    '    at decrypt (/home/z/my-project/.next/dev/server/chunks/node_modules_jose_dist_node_cjs_bd88468e._.js:757:20)\n' +
+   248→    '    at flattenedDecrypt (/home/z/my-project/.next/dev/server/chunks/node_modules_jose_dist_node_cjs_bd88468e._.js:2254:52)\n' +
+   249→    '    at async compactDecrypt (/home/z/my-project/.next/dev/server/chunks/node_modules_jose_dist_node_cjs_bd88468e._.js:2308:23)\n' +
+   250→    '    at async jwtDecrypt (/home/z/my-project/.next/dev/server/chunks/node_modules_jose_dist_node_cjs_bd88468e._.js:3770:23)\n' +
+   251→    '    at async Object.decode (/home/z/my-project/.next/dev/server/chunks/node_modules_next-auth_1810886e._.js:725:25)\n' +
+   252→    '    at async Object.session (/home/z/my-project/.next/dev/server/chunks/node_modules_next-auth_1810886e._.js:2038:34)\n' +
+   253→    '    at async AuthHandler (/home/z/my-project/.next/dev/server/chunks/node_modules_next-auth_1810886e._.js:3184:37)\n' +
+   254→    '    at async NextAuthRouteHandler (/home/z/my-project/.next/dev/server/chunks/node_modules_next-auth_1810886e._.js:3501:30)\n' +
+   255→    '    at async NextAuth._args$ (/home/z/my-project/.next/dev/server/chunks/node_modules_next-auth_1810886e._.js:3536:24)\n' +
+   256→    '    at async AppRouteRouteModule.do (/home/z/my-project/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:37866)\n' +
+   257→    '    at async AppRouteRouteModule.handle (/home/z/my-project/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:45156)\n' +
+   258→    '    at async responseGenerator (/home/z/my-project/.next/dev/server/chunks/node_modules_next_2741d3c7._.js:12018:38)\n' +
+   259→    '    at async AppRouteRouteModule.handleResponse (/home/z/my-project/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:1:187713)\n' +
+   260→    '    at async handleResponse (/home/z/my-project/.next/dev/server/chunks/node_modules_next_2741d3c7._.js:12081:32)\n' +
+   261→    '    at async Module.handler (/home/z/my-project/.next/dev/server/chunks/node_modules_next_2741d3c7._.js:12134:13)\n' +
+   262→    '    at async DevServer.renderToResponseWithComponentsImpl (/home/z/my-project/node_modules/next/dist/server/base-server.js:1422:9)\n' +
+   263→    '    at async DevServer.renderPageComponent (/home/z/my-project/node_modules/next/dist/server/base-server.js:1474:24)\n' +
+   264→    '    at async DevServer.renderToResponseImpl (/home/z/my-project/node_modules/next/dist/server/base-server.js:1524:32)\n' +
+   265→    '    at async DevServer.pipeImpl (/home/z/my-project/node_modules/next/dist/server/base-server.js:1018:25)\n' +
+   266→    '    at async NextNodeServer.handleCatchallRenderRequest (/home/z/my-project/node_modules/next/dist/server/next-server.js:395:17)\n' +
+   267→    '    at async DevServer.handleRequestImpl (/home/z/my-project/node_modules/next/dist/server/base-server.js:909:17)\n' +
+   268→    '    at async /home/z/my-project/node_modules/next/dist/server/dev/next-dev-server.js:387:20\n' +
+   269→    '    at async Span.traceAsyncFn (/home/z/my-project/node_modules/next/dist/trace/trace.js:157:20)\n' +
+   270→    '    at async DevServer.handleRequest (/home/z/my-project/node_modules/next/dist/server/dev/next-dev-server.js:383:24)\n' +
+   271→    '    at async invokeRender (/home/z/my-project/node_modules/next/dist/server/lib/router-server.js:248:21)\n' +
+   272→    '    at async handleRequest (/home/z/my-project/node_modules/next/dist/server/lib/router-server.js:447:24)\n' +
+   273→    '    at async requestHandlerImpl (/home/z/my-project/node_modules/next/dist/server/lib/router-server.js:496:13)\n' +
+   274→    '    at async Server.requestListener (/home/z/my-project/node_modules/next/dist/server/lib/start-server.js:226:13)',
+   275→  name: 'JWEDecryptionFailed'
+   276→}
+   277→ GET /api/auth/session 200 in 29ms (compile: 18ms, render: 11ms)
+   278→ GET /api/auth/csrf 200 in 23ms (compile: 17ms, render: 6ms)
+   279→prisma:query SELECT 1
+   280→prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`name`, `main`.`User`.`email`, `main`.`User`.`password`, `main`.`User`.`avatar`, `main`.`User`.`about`, `main`.`User`.`role`, `main`.`User`.`isActive`, `main`.`User`.`isVerified`, `main`.`User`.`isOnline`, `main`.`User`.`lastSeen`, `main`.`User`.`createdAt`, `main`.`User`.`updatedAt` FROM `main`.`User` WHERE (`main`.`User`.`email` = ? AND 1=1) LIMIT ? OFFSET ?
+   281→ POST /api/auth/callback/credentials 302 in 290ms (compile: 1881µs, render: 289ms)
+   282→ GET / 200 in 25ms (compile: 4ms, render: 21ms)
+   283→ GET /api/auth/session 200 in 25ms (compile: 18ms, render: 7ms)
+   284→prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`name`, `main`.`User`.`email`, `main`.`User`.`password`, `main`.`User`.`avatar`, `main`.`User`.`about`, `main`.`User`.`role`, `main`.`User`.`isActive`, `main`.`User`.`isVerified`, `main`.`User`.`isOnline`, `main`.`User`.`lastSeen`, `main`.`User`.`createdAt`, `main`.`User`.`updatedAt` FROM `main`.`User` WHERE (`main`.`User`.`id` = ? AND 1=1) LIMIT ? OFFSET ?
+   285→prisma:query SELECT `main`.`ConversationParticipant`.`id`, `main`.`ConversationParticipant`.`conversationId`, `main`.`ConversationParticipant`.`userId`, `main`.`ConversationParticipant`.`role`, `main`.`ConversationParticipant`.`joinedAt` FROM `main`.`ConversationParticipant` WHERE `main`.`ConversationParticipant`.`userId` IN (?) ORDER BY `main`.`ConversationParticipant`.`joinedAt` DESC LIMIT ? OFFSET ?
+   286→prisma:query SELECT `main`.`Conversation`.`id`, `main`.`Conversation`.`type`, `main`.`Conversation`.`name`, `main`.`Conversation`.`avatar`, `main`.`Conversation`.`createdAt`, `main`.`Conversation`.`updatedAt` FROM `main`.`Conversation` WHERE `main`.`Conversation`.`id` IN (?) LIMIT ? OFFSET ?
+   287→prisma:query SELECT `main`.`ConversationParticipant`.`id`, `main`.`ConversationParticipant`.`conversationId`, `main`.`ConversationParticipant`.`userId`, `main`.`ConversationParticipant`.`role`, `main`.`ConversationParticipant`.`joinedAt` FROM `main`.`ConversationParticipant` WHERE `main`.`ConversationParticipant`.`conversationId` IN (?) LIMIT ? OFFSET ?
+   288→prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`name`, `main`.`User`.`email`, `main`.`User`.`avatar`, `main`.`User`.`about`, `main`.`User`.`isOnline`, `main`.`User`.`lastSeen` FROM `main`.`User` WHERE `main`.`User`.`id` IN (?,?) LIMIT ? OFFSET ?
+   289→prisma:query SELECT `main`.`Message`.`id`, `main`.`Message`.`conversationId`, `main`.`Message`.`senderId`, `main`.`Message`.`content`, `main`.`Message`.`type`, `main`.`Message`.`mediaUrl`, `main`.`Message`.`mediaName`, `main`.`Message`.`isRead`, `main`.`Message`.`createdAt` FROM `main`.`Message` WHERE `main`.`Message`.`conversationId` IN (?) ORDER BY `main`.`Message`.`createdAt` DESC LIMIT ? OFFSET ?
+   290→prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`name`, `main`.`User`.`avatar` FROM `main`.`User` WHERE `main`.`User`.`id` IN (?) LIMIT ? OFFSET ?
+   291→ GET /api/auth/user 200 in 12ms (compile: 2ms, render: 10ms)
+   292→ GET / 200 in 24ms (compile: 5ms, render: 19ms)
+   293→ GET /api/auth/session 200 in 25ms (compile: 18ms, render: 7ms)
+   294→ GET /api/auth/csrf 200 in 26ms (compile: 18ms, render: 8ms)
+   295→ POST /api/auth/callback/credentials 302 in 9ms (compile: 2ms, render: 7ms)
+   296→
