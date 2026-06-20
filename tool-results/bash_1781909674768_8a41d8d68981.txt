@@ -1,0 +1,865 @@
+[info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[log] [HMR] connected
+[warning] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[error] In HTML, %s cannot be a descendant of <%s>.
+This will cause a hydration error.%s <button> button 
+
+  ...
+    <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<SegmentViewNode>} forbidden={undefined} ...>
+      <RedirectBoundary>
+        <RedirectErrorBoundary router={{...}}>
+          <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} segmentPath={[...]} ...>
+            <SegmentViewNode type="page" pagePath="page.tsx">
+              <SegmentTrieNode>
+              <ChatApp>
+                <ChatAppClient initialData={{users:[...], ...}}>
+                  <div className="h-screen f..." dir="rtl">
+                    <AuthModal>
+                    <ParticipantSettings>
+                    <Sidebar>
+                    <ChatList>
+                      <div className="flex-1 fle...">
+                        <div>
+                        <div className="flex-1 ove...">
+                          <div className="grid grid-...">
+>                           <button
+>                             onClick={function onClick}
+>                             className="relative bg-white rounded-xl p-3 border transition-all text-right w-full bord..."
+>                             dir="rtl"
+>                           >
+                              <div>
+                              <p>
+                              <div className="flex items...">
+>                               <button
+>                                 className="w-7 h-7 rounded-lg bg-blue-50 flex items-center justify-center hover:bg-b..."
+>                               >
+                                ...
+                            ...
+            ...
+          ...
+
+[error] <%s> cannot contain a nested %s.
+See this log for the ancestor stack trace. button <button>
+[info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[log] [HMR] connected
+[error] In HTML, %s cannot be a descendant of <%s>.
+This will cause a hydration error.%s <button> button 
+
+  ...
+    <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<SegmentViewNode>} forbidden={undefined} ...>
+      <RedirectBoundary>
+        <RedirectErrorBoundary router={{...}}>
+          <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} segmentPath={[...]} ...>
+            <SegmentViewNode type="page" pagePath="page.tsx">
+              <SegmentTrieNode>
+              <ChatApp>
+                <ChatAppClient initialData={{users:[...], ...}}>
+                  <div className="h-screen f..." dir="rtl">
+                    <AuthModal>
+                    <ParticipantSettings>
+                    <Sidebar>
+                    <ChatList>
+                      <div className="flex-1 fle...">
+                        <div>
+                        <div className="flex-1 ove...">
+                          <div className="grid grid-...">
+>                           <button
+>                             onClick={function onClick}
+>                             className="relative bg-white rounded-xl p-3 border transition-all text-right w-full bord..."
+>                             dir="rtl"
+>                           >
+                              <div>
+                              <p>
+                              <div className="flex items...">
+>                               <button
+>                                 className="w-7 h-7 rounded-lg bg-blue-50 flex items-center justify-center hover:bg-b..."
+>                               >
+                                ...
+                            ...
+            ...
+          ...
+
+[error] <%s> cannot contain a nested %s.
+See this log for the ancestor stack trace. button <button>
+[info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[log] [HMR] connected
+[info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[log] [HMR] connected
+[log] [HMR] connected
+[info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[log] [HMR] connected
+[log] [HMR] connected
+[info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[log] [HMR] connected
+[log] [HMR] connected
+[info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[log] [HMR] connected
+[info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[log] [HMR] connected
+[info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[log] [HMR] connected
+[log] [HMR] connected
+[info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[log] [HMR] connected
+[log] [Fast Refresh] rebuilding
+[info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[log] [HMR] connected
+[info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[log] [HMR] connected
+[info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[log] [HMR] connected
+[info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[log] [HMR] connected
+[info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[log] [HMR] connected
+[log] [HMR] connected
+[info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[log] [HMR] connected
+[info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[log] [HMR] connected
+[log] [Fast Refresh] rebuilding
+[info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[log] [HMR] connected
+[info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[log] [HMR] connected
+[info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[log] [HMR] connected
+[info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[log] [HMR] connected
+[info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[log] [HMR] connected
+[info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[log] [HMR] connected
+[warning] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[log] [HMR] connected
+[log] [Fast Refresh] rebuilding
+[log] [Fast Refresh] done in 218ms
+[log] [Fast Refresh] rebuilding
+[log] [Fast Refresh] done in 107ms
+[info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[log] [HMR] connected
+[info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[log] [HMR] connected
+[log] [Fast Refresh] rebuilding
+[log] [Fast Refresh] done in 244ms
+[log] [Fast Refresh] rebuilding
+[log] [Fast Refresh] done in 112ms
+[log] [Fast Refresh] rebuilding
+[log] [Fast Refresh] done in 166ms
+[log] [Fast Refresh] rebuilding
+[log] [Fast Refresh] done in 245ms
+[log] [Fast Refresh] rebuilding
+[log] [Fast Refresh] done in 216ms
+[log] [Fast Refresh] rebuilding
+[log] [Fast Refresh] done in 167ms
+[log] [Fast Refresh] rebuilding
+[log] [Fast Refresh] done in 184ms
+[log] [Fast Refresh] rebuilding
+[log] [Fast Refresh] done in 57ms
+[log] [Fast Refresh] rebuilding
+[log] [Fast Refresh] done in 46ms
+[log] [Fast Refresh] rebuilding
+[log] [Fast Refresh] done in 167ms
+[log] [Fast Refresh] rebuilding
+[log] [Fast Refresh] done in 52ms
+[log] [Fast Refresh] rebuilding
+[log] [Fast Refresh] done in 42ms
+[log] [Fast Refresh] rebuilding
+[log] [Fast Refresh] done in 301ms
+[log] [Fast Refresh] rebuilding
+[log] [Fast Refresh] done in 138ms
+[log] [Fast Refresh] rebuilding
+[log] [Fast Refresh] done in 142ms
+[log] [Fast Refresh] rebuilding
+[log] [Fast Refresh] done in 173ms
+[log] [Fast Refresh] rebuilding
+[log] [Fast Refresh] done in 204ms
+[log] [Fast Refresh] rebuilding
+[log] [Fast Refresh] done in 59ms
+[log] [Fast Refresh] rebuilding
+[log] [Fast Refresh] done in 54ms
+[log] [Fast Refresh] rebuilding
+[log] [Fast Refresh] done in 520ms
+[log] [Fast Refresh] rebuilding
+[log] [Fast Refresh] done in 106ms
+[log] [Fast Refresh] rebuilding
+[log] [Fast Refresh] done in 240ms
+[log] [Fast Refresh] rebuilding
+[log] [Fast Refresh] done in 164ms
+[log] [Fast Refresh] rebuilding
+[log] [Fast Refresh] done in 162ms
+[log] [Fast Refresh] rebuilding
+[warning] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[log] [Fast Refresh] done in 303ms
+[log] [Fast Refresh] rebuilding
+[error] ./src/components/chat/channel-view.tsx:8:1
+Export formatDuration doesn't exist in target module
+   6 | import { Button } from '@/components/ui/button';
+   7 | import { Badge } from '@/components/ui/badge';
+>  8 | import { useAppState, setState, Channel, ChannelMessage, getGlobalState, formatDuration } from '@/components/chat/chat-view';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { getSocket } from '@/lib/socket';
+  10 |
+  11 | function formatTime(dateStr: string): string {
+
+The export formatDuration was not found in module [project]/src/components/chat/chat-view.tsx [app-client] (ecmascript).
+Did you mean to import ChatView?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/components/chat/channel-view.tsx [Client Component Browser]
+    ./src/app/chat-app-client.tsx [Client Component Browser]
+    ./src/app/chat-app-client.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/chat/channel-view.tsx [Client Component SSR]
+    ./src/app/chat-app-client.tsx [Client Component SSR]
+    ./src/app/chat-app-client.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+[error] ./src/components/chat/channel-view.tsx:8:1
+Export formatDuration doesn't exist in target module
+   6 | import { Button } from '@/components/ui/button';
+   7 | import { Badge } from '@/components/ui/badge';
+>  8 | import { useAppState, setState, Channel, ChannelMessage, getGlobalState, formatDuration } from '@/components/chat/chat-view';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { getSocket } from '@/lib/socket';
+  10 |
+  11 | function formatTime(dateStr: string): string {
+
+The export formatDuration was not found in module [project]/src/components/chat/chat-view.tsx [app-ssr] (ecmascript).
+Did you mean to import ChatView?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/components/chat/channel-view.tsx [Client Component Browser]
+    ./src/app/chat-app-client.tsx [Client Component Browser]
+    ./src/app/chat-app-client.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/chat/channel-view.tsx [Client Component SSR]
+    ./src/app/chat-app-client.tsx [Client Component SSR]
+    ./src/app/chat-app-client.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+[log] [Fast Refresh] rebuilding
+[error] ./src/components/chat/channel-view.tsx:8:1
+Export formatDuration doesn't exist in target module
+   6 | import { Button } from '@/components/ui/button';
+   7 | import { Badge } from '@/components/ui/badge';
+>  8 | import { useAppState, setState, Channel, ChannelMessage, getGlobalState, formatDuration } from '@/components/chat/chat-view';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { getSocket } from '@/lib/socket';
+  10 |
+  11 | function formatTime(dateStr: string): string {
+
+The export formatDuration was not found in module [project]/src/components/chat/chat-view.tsx [app-client] (ecmascript).
+Did you mean to import ChatView?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/components/chat/channel-view.tsx [Client Component Browser]
+    ./src/app/chat-app-client.tsx [Client Component Browser]
+    ./src/app/chat-app-client.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/chat/channel-view.tsx [Client Component SSR]
+    ./src/app/chat-app-client.tsx [Client Component SSR]
+    ./src/app/chat-app-client.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+[error] ./src/components/chat/channel-view.tsx:8:1
+Export formatDuration doesn't exist in target module
+   6 | import { Button } from '@/components/ui/button';
+   7 | import { Badge } from '@/components/ui/badge';
+>  8 | import { useAppState, setState, Channel, ChannelMessage, getGlobalState, formatDuration } from '@/components/chat/chat-view';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { getSocket } from '@/lib/socket';
+  10 |
+  11 | function formatTime(dateStr: string): string {
+
+The export formatDuration was not found in module [project]/src/components/chat/chat-view.tsx [app-ssr] (ecmascript).
+Did you mean to import ChatView?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/components/chat/channel-view.tsx [Client Component Browser]
+    ./src/app/chat-app-client.tsx [Client Component Browser]
+    ./src/app/chat-app-client.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/chat/channel-view.tsx [Client Component SSR]
+    ./src/app/chat-app-client.tsx [Client Component SSR]
+    ./src/app/chat-app-client.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+[log] [Fast Refresh] rebuilding
+[error] ./src/components/chat/channel-view.tsx:8:1
+Export formatDuration doesn't exist in target module
+   6 | import { Button } from '@/components/ui/button';
+   7 | import { Badge } from '@/components/ui/badge';
+>  8 | import { useAppState, setState, Channel, ChannelMessage, getGlobalState, formatDuration } from '@/components/chat/chat-view';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { getSocket } from '@/lib/socket';
+  10 |
+  11 | function formatTime(dateStr: string): string {
+
+The export formatDuration was not found in module [project]/src/components/chat/chat-view.tsx [app-client] (ecmascript).
+Did you mean to import ChatView?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/components/chat/channel-view.tsx [Client Component Browser]
+    ./src/app/chat-app-client.tsx [Client Component Browser]
+    ./src/app/chat-app-client.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/chat/channel-view.tsx [Client Component SSR]
+    ./src/app/chat-app-client.tsx [Client Component SSR]
+    ./src/app/chat-app-client.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+[error] ./src/components/chat/channel-view.tsx:8:1
+Export formatDuration doesn't exist in target module
+   6 | import { Button } from '@/components/ui/button';
+   7 | import { Badge } from '@/components/ui/badge';
+>  8 | import { useAppState, setState, Channel, ChannelMessage, getGlobalState, formatDuration } from '@/components/chat/chat-view';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { getSocket } from '@/lib/socket';
+  10 |
+  11 | function formatTime(dateStr: string): string {
+
+The export formatDuration was not found in module [project]/src/components/chat/chat-view.tsx [app-ssr] (ecmascript).
+Did you mean to import ChatView?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/components/chat/channel-view.tsx [Client Component Browser]
+    ./src/app/chat-app-client.tsx [Client Component Browser]
+    ./src/app/chat-app-client.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/chat/channel-view.tsx [Client Component SSR]
+    ./src/app/chat-app-client.tsx [Client Component SSR]
+    ./src/app/chat-app-client.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+[log] [Fast Refresh] rebuilding
+[error] ./src/components/chat/channel-view.tsx:8:1
+Export formatDuration doesn't exist in target module
+   6 | import { Button } from '@/components/ui/button';
+   7 | import { Badge } from '@/components/ui/badge';
+>  8 | import { useAppState, setState, Channel, ChannelMessage, getGlobalState, formatDuration } from '@/components/chat/chat-view';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { getSocket } from '@/lib/socket';
+  10 |
+  11 | function formatTime(dateStr: string): string {
+
+The export formatDuration was not found in module [project]/src/components/chat/chat-view.tsx [app-client] (ecmascript).
+Did you mean to import ChatView?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/components/chat/channel-view.tsx [Client Component Browser]
+    ./src/app/chat-app-client.tsx [Client Component Browser]
+    ./src/app/chat-app-client.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/chat/channel-view.tsx [Client Component SSR]
+    ./src/app/chat-app-client.tsx [Client Component SSR]
+    ./src/app/chat-app-client.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+[error] ./src/components/chat/channel-view.tsx:8:1
+Export formatDuration doesn't exist in target module
+   6 | import { Button } from '@/components/ui/button';
+   7 | import { Badge } from '@/components/ui/badge';
+>  8 | import { useAppState, setState, Channel, ChannelMessage, getGlobalState, formatDuration } from '@/components/chat/chat-view';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { getSocket } from '@/lib/socket';
+  10 |
+  11 | function formatTime(dateStr: string): string {
+
+The export formatDuration was not found in module [project]/src/components/chat/chat-view.tsx [app-ssr] (ecmascript).
+Did you mean to import ChatView?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/components/chat/channel-view.tsx [Client Component Browser]
+    ./src/app/chat-app-client.tsx [Client Component Browser]
+    ./src/app/chat-app-client.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/chat/channel-view.tsx [Client Component SSR]
+    ./src/app/chat-app-client.tsx [Client Component SSR]
+    ./src/app/chat-app-client.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+[log] [Fast Refresh] rebuilding
+[error] ./src/components/chat/channel-view.tsx:8:1
+Export formatDuration doesn't exist in target module
+   6 | import { Button } from '@/components/ui/button';
+   7 | import { Badge } from '@/components/ui/badge';
+>  8 | import { useAppState, setState, Channel, ChannelMessage, getGlobalState, formatDuration } from '@/components/chat/chat-view';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { getSocket } from '@/lib/socket';
+  10 |
+  11 | function formatTime(dateStr: string): string {
+
+The export formatDuration was not found in module [project]/src/components/chat/chat-view.tsx [app-client] (ecmascript).
+Did you mean to import ChatView?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/components/chat/channel-view.tsx [Client Component Browser]
+    ./src/app/chat-app-client.tsx [Client Component Browser]
+    ./src/app/chat-app-client.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/chat/channel-view.tsx [Client Component SSR]
+    ./src/app/chat-app-client.tsx [Client Component SSR]
+    ./src/app/chat-app-client.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+[error] ./src/components/chat/channel-view.tsx:8:1
+Export formatDuration doesn't exist in target module
+   6 | import { Button } from '@/components/ui/button';
+   7 | import { Badge } from '@/components/ui/badge';
+>  8 | import { useAppState, setState, Channel, ChannelMessage, getGlobalState, formatDuration } from '@/components/chat/chat-view';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { getSocket } from '@/lib/socket';
+  10 |
+  11 | function formatTime(dateStr: string): string {
+
+The export formatDuration was not found in module [project]/src/components/chat/chat-view.tsx [app-ssr] (ecmascript).
+Did you mean to import ChatView?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/components/chat/channel-view.tsx [Client Component Browser]
+    ./src/app/chat-app-client.tsx [Client Component Browser]
+    ./src/app/chat-app-client.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/chat/channel-view.tsx [Client Component SSR]
+    ./src/app/chat-app-client.tsx [Client Component SSR]
+    ./src/app/chat-app-client.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+[error] ./src/app/chat-app-client.tsx:7:1
+Export useCallTimer doesn't exist in target module
+   5 | import { Sidebar } from '@/components/chat/sidebar';
+   6 | import { ChatList } from '@/components/chat/chat-list';
+>  7 | import { ChatView, ChannelView, UsersView, ParticipantSettings, AdminDashboard, useAppState, setState, useCallTimer } from '@/components/chat';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import { User } from '@/components/chat/chat-view';
+   9 | import { MessageCircle, Loader2 } from 'lucide-react';
+  10 | import { useSocketEvents } from '@/hooks/use-socket-events';
+
+The export useCallTimer was not found in module [project]/src/components/chat/index.ts [app-client] (ecmascript).
+Did you mean to import ChannelView?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Server Component:
+    ./src/app/chat-app-client.tsx
+    ./src/app/page.tsx
+[error] ./src/app/chat-app-client.tsx:7:1
+Export useCallTimer doesn't exist in target module
+   5 | import { Sidebar } from '@/components/chat/sidebar';
+   6 | import { ChatList } from '@/components/chat/chat-list';
+>  7 | import { ChatView, ChannelView, UsersView, ParticipantSettings, AdminDashboard, useAppState, setState, useCallTimer } from '@/components/chat';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import { User } from '@/components/chat/chat-view';
+   9 | import { MessageCircle, Loader2 } from 'lucide-react';
+  10 | import { useSocketEvents } from '@/hooks/use-socket-events';
+
+The export useCallTimer was not found in module [project]/src/components/chat/index.ts [app-ssr] (ecmascript).
+Did you mean to import ChannelView?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Server Component:
+    ./src/app/chat-app-client.tsx
+    ./src/app/page.tsx
+[log] [Fast Refresh] rebuilding
+[error] ./src/components/chat/channel-view.tsx:8:1
+Export formatDuration doesn't exist in target module
+   6 | import { Button } from '@/components/ui/button';
+   7 | import { Badge } from '@/components/ui/badge';
+>  8 | import { useAppState, setState, Channel, ChannelMessage, getGlobalState, formatDuration } from '@/components/chat/chat-view';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { getSocket } from '@/lib/socket';
+  10 |
+  11 | function formatTime(dateStr: string): string {
+
+The export formatDuration was not found in module [project]/src/components/chat/chat-view.tsx [app-client] (ecmascript).
+Did you mean to import ChatView?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/components/chat/channel-view.tsx [Client Component Browser]
+    ./src/app/chat-app-client.tsx [Client Component Browser]
+    ./src/app/chat-app-client.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/chat/channel-view.tsx [Client Component SSR]
+    ./src/app/chat-app-client.tsx [Client Component SSR]
+    ./src/app/chat-app-client.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+[error] ./src/components/chat/channel-view.tsx:8:1
+Export formatDuration doesn't exist in target module
+   6 | import { Button } from '@/components/ui/button';
+   7 | import { Badge } from '@/components/ui/badge';
+>  8 | import { useAppState, setState, Channel, ChannelMessage, getGlobalState, formatDuration } from '@/components/chat/chat-view';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { getSocket } from '@/lib/socket';
+  10 |
+  11 | function formatTime(dateStr: string): string {
+
+The export formatDuration was not found in module [project]/src/components/chat/chat-view.tsx [app-ssr] (ecmascript).
+Did you mean to import ChatView?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/components/chat/channel-view.tsx [Client Component Browser]
+    ./src/app/chat-app-client.tsx [Client Component Browser]
+    ./src/app/chat-app-client.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/chat/channel-view.tsx [Client Component SSR]
+    ./src/app/chat-app-client.tsx [Client Component SSR]
+    ./src/app/chat-app-client.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+[error] ./src/app/chat-app-client.tsx:7:1
+Export useCallTimer doesn't exist in target module
+   5 | import { Sidebar } from '@/components/chat/sidebar';
+   6 | import { ChatList } from '@/components/chat/chat-list';
+>  7 | import { ChatView, ChannelView, UsersView, ParticipantSettings, AdminDashboard, useAppState, setState, useCallTimer } from '@/components/chat';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import { User } from '@/components/chat/chat-view';
+   9 | import { MessageCircle, Loader2 } from 'lucide-react';
+  10 | import { useSocketEvents } from '@/hooks/use-socket-events';
+
+The export useCallTimer was not found in module [project]/src/components/chat/index.ts [app-client] (ecmascript).
+Did you mean to import ChannelView?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Server Component:
+    ./src/app/chat-app-client.tsx
+    ./src/app/page.tsx
+[error] ./src/app/chat-app-client.tsx:7:1
+Export useCallTimer doesn't exist in target module
+   5 | import { Sidebar } from '@/components/chat/sidebar';
+   6 | import { ChatList } from '@/components/chat/chat-list';
+>  7 | import { ChatView, ChannelView, UsersView, ParticipantSettings, AdminDashboard, useAppState, setState, useCallTimer } from '@/components/chat';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import { User } from '@/components/chat/chat-view';
+   9 | import { MessageCircle, Loader2 } from 'lucide-react';
+  10 | import { useSocketEvents } from '@/hooks/use-socket-events';
+
+The export useCallTimer was not found in module [project]/src/components/chat/index.ts [app-ssr] (ecmascript).
+Did you mean to import ChannelView?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Server Component:
+    ./src/app/chat-app-client.tsx
+    ./src/app/page.tsx
+[log] [HMR] connected
+[info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[log] [HMR] connected
+[error] ./src/components/chat/channel-view.tsx:8:1
+Export formatDuration doesn't exist in target module
+   6 | import { Button } from '@/components/ui/button';
+   7 | import { Badge } from '@/components/ui/badge';
+>  8 | import { useAppState, setState, Channel, ChannelMessage, getGlobalState, formatDuration } from '@/components/chat/chat-view';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { getSocket } from '@/lib/socket';
+  10 |
+  11 | function formatTime(dateStr: string): string {
+
+The export formatDuration was not found in module [project]/src/components/chat/chat-view.tsx [app-client] (ecmascript).
+Did you mean to import ChatView?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/components/chat/channel-view.tsx [Client Component Browser]
+    ./src/app/chat-app-client.tsx [Client Component Browser]
+    ./src/app/chat-app-client.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/chat/channel-view.tsx [Client Component SSR]
+    ./src/app/chat-app-client.tsx [Client Component SSR]
+    ./src/app/chat-app-client.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+[error] ./src/components/chat/channel-view.tsx:8:1
+Export formatDuration doesn't exist in target module
+   6 | import { Button } from '@/components/ui/button';
+   7 | import { Badge } from '@/components/ui/badge';
+>  8 | import { useAppState, setState, Channel, ChannelMessage, getGlobalState, formatDuration } from '@/components/chat/chat-view';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { getSocket } from '@/lib/socket';
+  10 |
+  11 | function formatTime(dateStr: string): string {
+
+The export formatDuration was not found in module [project]/src/components/chat/chat-view.tsx [app-ssr] (ecmascript).
+Did you mean to import ChatView?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/components/chat/channel-view.tsx [Client Component Browser]
+    ./src/app/chat-app-client.tsx [Client Component Browser]
+    ./src/app/chat-app-client.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/chat/channel-view.tsx [Client Component SSR]
+    ./src/app/chat-app-client.tsx [Client Component SSR]
+    ./src/app/chat-app-client.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+[error] ./src/app/chat-app-client.tsx:7:1
+Export useCallTimer doesn't exist in target module
+   5 | import { Sidebar } from '@/components/chat/sidebar';
+   6 | import { ChatList } from '@/components/chat/chat-list';
+>  7 | import { ChatView, ChannelView, UsersView, ParticipantSettings, AdminDashboard, useAppState, setState, useCallTimer } from '@/components/chat';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import { User } from '@/components/chat/chat-view';
+   9 | import { MessageCircle, Loader2 } from 'lucide-react';
+  10 | import { useSocketEvents } from '@/hooks/use-socket-events';
+
+The export useCallTimer was not found in module [project]/src/components/chat/index.ts [app-client] (ecmascript).
+Did you mean to import ChannelView?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Server Component:
+    ./src/app/chat-app-client.tsx
+    ./src/app/page.tsx
+[error] ./src/app/chat-app-client.tsx:7:1
+Export useCallTimer doesn't exist in target module
+   5 | import { Sidebar } from '@/components/chat/sidebar';
+   6 | import { ChatList } from '@/components/chat/chat-list';
+>  7 | import { ChatView, ChannelView, UsersView, ParticipantSettings, AdminDashboard, useAppState, setState, useCallTimer } from '@/components/chat';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import { User } from '@/components/chat/chat-view';
+   9 | import { MessageCircle, Loader2 } from 'lucide-react';
+  10 | import { useSocketEvents } from '@/hooks/use-socket-events';
+
+The export useCallTimer was not found in module [project]/src/components/chat/index.ts [app-ssr] (ecmascript).
+Did you mean to import ChannelView?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Server Component:
+    ./src/app/chat-app-client.tsx
+    ./src/app/page.tsx
+[clear] console.clear
+[error] ./src/components/chat/channel-view.tsx:8:1
+Export formatDuration doesn't exist in target module
+   6 | import { Button } from '@/components/ui/button';
+   7 | import { Badge } from '@/components/ui/badge';
+>  8 | import { useAppState, setState, Channel, ChannelMessage, getGlobalState, formatDuration } from '@/components/chat/chat-view';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { getSocket } from '@/lib/socket';
+  10 |
+  11 | function formatTime(dateStr: string): string {
+
+The export formatDuration was not found in module [project]/src/components/chat/chat-view.tsx [app-client] (ecmascript).
+Did you mean to import ChatView?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/components/chat/channel-view.tsx [Client Component Browser]
+    ./src/app/chat-app-client.tsx [Client Component Browser]
+    ./src/app/chat-app-client.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/chat/channel-view.tsx [Client Component SSR]
+    ./src/app/chat-app-client.tsx [Client Component SSR]
+    ./src/app/chat-app-client.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+[error] ./src/components/chat/channel-view.tsx:8:1
+Export formatDuration doesn't exist in target module
+   6 | import { Button } from '@/components/ui/button';
+   7 | import { Badge } from '@/components/ui/badge';
+>  8 | import { useAppState, setState, Channel, ChannelMessage, getGlobalState, formatDuration } from '@/components/chat/chat-view';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { getSocket } from '@/lib/socket';
+  10 |
+  11 | function formatTime(dateStr: string): string {
+
+The export formatDuration was not found in module [project]/src/components/chat/chat-view.tsx [app-ssr] (ecmascript).
+Did you mean to import ChatView?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/components/chat/channel-view.tsx [Client Component Browser]
+    ./src/app/chat-app-client.tsx [Client Component Browser]
+    ./src/app/chat-app-client.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/chat/channel-view.tsx [Client Component SSR]
+    ./src/app/chat-app-client.tsx [Client Component SSR]
+    ./src/app/chat-app-client.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+[error] ./src/app/chat-app-client.tsx:7:1
+Export useCallTimer doesn't exist in target module
+   5 | import { Sidebar } from '@/components/chat/sidebar';
+   6 | import { ChatList } from '@/components/chat/chat-list';
+>  7 | import { ChatView, ChannelView, UsersView, ParticipantSettings, AdminDashboard, useAppState, setState, useCallTimer } from '@/components/chat';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import { User } from '@/components/chat/chat-view';
+   9 | import { MessageCircle, Loader2 } from 'lucide-react';
+  10 | import { useSocketEvents } from '@/hooks/use-socket-events';
+
+The export useCallTimer was not found in module [project]/src/components/chat/index.ts [app-client] (ecmascript).
+Did you mean to import ChannelView?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Server Component:
+    ./src/app/chat-app-client.tsx
+    ./src/app/page.tsx
+[error] ./src/app/chat-app-client.tsx:7:1
+Export useCallTimer doesn't exist in target module
+   5 | import { Sidebar } from '@/components/chat/sidebar';
+   6 | import { ChatList } from '@/components/chat/chat-list';
+>  7 | import { ChatView, ChannelView, UsersView, ParticipantSettings, AdminDashboard, useAppState, setState, useCallTimer } from '@/components/chat';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import { User } from '@/components/chat/chat-view';
+   9 | import { MessageCircle, Loader2 } from 'lucide-react';
+  10 | import { useSocketEvents } from '@/hooks/use-socket-events';
+
+The export useCallTimer was not found in module [project]/src/components/chat/index.ts [app-ssr] (ecmascript).
+Did you mean to import ChannelView?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Server Component:
+    ./src/app/chat-app-client.tsx
+    ./src/app/page.tsx
+[log] [Fast Refresh] rebuilding
+[clear] console.clear
+[error] ./src/components/chat/channel-view.tsx:8:1
+Export formatDuration doesn't exist in target module
+   6 | import { Button } from '@/components/ui/button';
+   7 | import { Badge } from '@/components/ui/badge';
+>  8 | import { useAppState, setState, Channel, ChannelMessage, getGlobalState, formatDuration } from '@/components/chat/chat-view';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { getSocket } from '@/lib/socket';
+  10 |
+  11 | function formatTime(dateStr: string): string {
+
+The export formatDuration was not found in module [project]/src/components/chat/chat-view.tsx [app-client] (ecmascript).
+Did you mean to import ChatView?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/components/chat/channel-view.tsx [Client Component Browser]
+    ./src/app/chat-app-client.tsx [Client Component Browser]
+    ./src/app/chat-app-client.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/chat/channel-view.tsx [Client Component SSR]
+    ./src/app/chat-app-client.tsx [Client Component SSR]
+    ./src/app/chat-app-client.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+[error] ./src/components/chat/channel-view.tsx:8:1
+Export formatDuration doesn't exist in target module
+   6 | import { Button } from '@/components/ui/button';
+   7 | import { Badge } from '@/components/ui/badge';
+>  8 | import { useAppState, setState, Channel, ChannelMessage, getGlobalState, formatDuration } from '@/components/chat/chat-view';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 | import { getSocket } from '@/lib/socket';
+  10 |
+  11 | function formatTime(dateStr: string): string {
+
+The export formatDuration was not found in module [project]/src/components/chat/chat-view.tsx [app-ssr] (ecmascript).
+Did you mean to import ChatView?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/components/chat/channel-view.tsx [Client Component Browser]
+    ./src/app/chat-app-client.tsx [Client Component Browser]
+    ./src/app/chat-app-client.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/chat/channel-view.tsx [Client Component SSR]
+    ./src/app/chat-app-client.tsx [Client Component SSR]
+    ./src/app/chat-app-client.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+[error] ./src/app/chat-app-client.tsx:7:1
+Export useCallTimer doesn't exist in target module
+   5 | import { Sidebar } from '@/components/chat/sidebar';
+   6 | import { ChatList } from '@/components/chat/chat-list';
+>  7 | import { ChatView, ChannelView, UsersView, ParticipantSettings, AdminDashboard, useAppState, setState, useCallTimer } from '@/components/chat';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import { User } from '@/components/chat/chat-view';
+   9 | import { MessageCircle, Loader2 } from 'lucide-react';
+  10 | import { useSocketEvents } from '@/hooks/use-socket-events';
+
+The export useCallTimer was not found in module [project]/src/components/chat/index.ts [app-client] (ecmascript).
+Did you mean to import ChannelView?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Server Component:
+    ./src/app/chat-app-client.tsx
+    ./src/app/page.tsx
+[error] ./src/app/chat-app-client.tsx:7:1
+Export useCallTimer doesn't exist in target module
+   5 | import { Sidebar } from '@/components/chat/sidebar';
+   6 | import { ChatList } from '@/components/chat/chat-list';
+>  7 | import { ChatView, ChannelView, UsersView, ParticipantSettings, AdminDashboard, useAppState, setState, useCallTimer } from '@/components/chat';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import { User } from '@/components/chat/chat-view';
+   9 | import { MessageCircle, Loader2 } from 'lucide-react';
+  10 | import { useSocketEvents } from '@/hooks/use-socket-events';
+
+The export useCallTimer was not found in module [project]/src/components/chat/index.ts [app-ssr] (ecmascript).
+Did you mean to import ChannelView?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Server Component:
+    ./src/app/chat-app-client.tsx
+    ./src/app/page.tsx
+[log] [Fast Refresh] rebuilding
+[log] [HMR] connected
+[info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[log] [HMR] connected
+[info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[log] [HMR] connected
+[info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[log] [HMR] connected
+[info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[log] [HMR] connected
+[warning] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.

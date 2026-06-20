@@ -1,0 +1,130 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String   @id @default(cuid())
+  email          String   @unique
+  password       String
+  name           String
+  avatar         String?
+  status         String   @default("متصل")       // متصل, غير متصل, متاح
+  role           String   @default("مستخدم")       // مستخدم, مسؤول
+  approvalStatus String   @default("approved")     // pending, approved, rejected
+  isBlocked      Boolean  @default(false)
+  timezone       String   @default("Asia/Riyadh")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  conversations    ConversationMember[]
+  messages         Message[]
+  channelMembers   ChannelMember[]
+  channelMessages  ChannelMessage[]
+  voiceCallsInitiated VoiceCall[] @relation("CallInitiator")
+  voiceCallsReceived  VoiceCall[] @relation("CallReceiver")
+}
+
+model Conversation {
+  id          String   @id @default(cuid())
+  name        String?
+  type        String   @default("خاص")      // خاص, مجموعة
+  status      String   @default("مفتوحة")     // مفتوحة, مغلقة, مكتملة
+  isFavorite  Boolean  @default(false)
+  createdBy   String?                     // من أنشأ المحادثة
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  members  ConversationMember[]
+  messages Message[]
+}
+
+model ConversationMember {
+  id             String      @id @default(cuid())
+  conversationId String
+  userId         String
+  joinedAt       DateTime    @default(now())
+  lastReadAt     DateTime    @default(now())
+  notifications  Boolean     @default(true)
+
+  conversation Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([conversationId, userId])
+}
+
+model Message {
+  id             String      @id @default(cuid())
+  conversationId String
+  senderId       String
+  content        String
+  type           String      @default("نص")    // نص, صورة, ملف, صوت
+  fileName       String?                        // اسم الملف المرفق
+  fileUrl        String?                        // رابط الملف المرفق
+  fileSize       Int?                           // حجم الملف بالبايت
+  isRead         Boolean     @default(false)
+  createdAt      DateTime    @default(now())
+
+  conversation Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  sender       User         @relation(fields: [senderId], references: [id])
+}
+
+model Channel {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  createdBy   String?                     // من أنشأ القناة
+  isLocked    Boolean  @default(false)    // هل القناة مقفلة (يحتاج إذن للانضمام)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  members  ChannelMember[]
+  messages ChannelMessage[]
+}
+
+model ChannelMember {
+  id        String   @id @default(cuid())
+  channelId String
+  userId    String
+  role      String   @default("عضو")      // عضو, مسؤول
+  joinedAt  DateTime @default(now())
+
+  channel Channel @relation(fields: [channelId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([channelId, userId])
+}
+
+model ChannelMessage {
+  id        String   @id @default(cuid())
+  channelId String
+  senderId  String
+  content   String
+  type      String   @default("نص")
+  fileName  String?                        // اسم الملف المرفق
+  fileUrl   String?                        // رابط الملف المرفق
+  fileSize  Int?                           // حجم الملف بالبايت
+  createdAt DateTime @default(now())
+
+  channel Channel @relation(fields: [channelId], references: [id], onDelete: Cascade)
+  sender  User    @relation(fields: [senderId], references: [id], onDelete: Cascade)
+}
+
+model VoiceCall {
+  id             String   @id @default(cuid())
+  callerId       String
+  receiverId     String
+  conversationId String?
+  channelId      String?
+  status         String   @default(" ringing")  // ringing, connected, ended, missed, rejected
+  duration       Int      @default(0)             // by seconds
+  createdAt      DateTime @default(now())
+  endedAt        DateTime?
+
+  caller   User    @relation("CallInitiator", fields: [callerId], references: [id], onDelete: Cascade)
+  receiver User    @relation("CallReceiver", fields: [receiverId], references: [id], onDelete: Cascade)
+}
