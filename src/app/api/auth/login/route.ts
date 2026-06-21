@@ -15,12 +15,10 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'البريد الإلكتروني أو كلمة المرور غير صحيحة' }, { status: 401 });
     }
 
-    // Check if user is blocked
     if (user.isBlocked) {
       return NextResponse.json({ error: 'تم حظر هذا الحساب. تواصل مع المسؤول.', blocked: true }, { status: 403 });
     }
 
-    // Check if user is approved
     if (user.approvalStatus === 'pending') {
       return NextResponse.json({ error: 'حسابك قيد المراجعة. انتظر موافقة المسؤول.', pending: true }, { status: 403 });
     }
@@ -41,16 +39,19 @@ export async function POST(req: NextRequest) {
         approvalStatus: user.approvalStatus, isBlocked: user.isBlocked,
       },
     });
-  }  catch (error) {
+  } catch (error) {
     console.error("LOGIN ERROR:", error);
-
     return NextResponse.json(
-      {
-        error: "حدث خطأ أثناء تسجيل الدخول",
-        details:
-          error instanceof Error ? error.message : String(error),
-      },
+      { error: "حدث خطأ أثناء تسجيل الدخول", details: error instanceof Error ? error.message : String(error) },
       { status: 500 }
     );
   }
+}
+
+// GET /api/auth/login - لمنع خطأ 405 عند الفتح المباشر
+export async function GET() {
+  return NextResponse.json(
+    { error: 'طريقة طلب غير صحيحة. استخدم POST لتسجيل الدخول.' },
+    { status: 405 }
+  );
 }
