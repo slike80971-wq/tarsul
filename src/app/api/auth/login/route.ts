@@ -41,15 +41,16 @@ export async function POST(req: NextRequest) {
         approvalStatus: user.approvalStatus, isBlocked: user.isBlocked,
       },
     });
-  } catch (error) {
-  console.error("LOGIN ERROR:", error);
+  }  catch (error) {
+    console.error("LOGIN ERROR:", error);
 
-  return NextResponse.json(
-    {
-      error: "حدث خطأ أثناء تسجيل الدخول",
-      details:
-        error instanceof Error ? error.message : String(error),
-    },
-    { status: 500 }
-  );
+    return NextResponse.json(
+      {
+        error: "حدث خطأ أثناء تسجيل الدخول",
+        details:
+          error instanceof Error ? error.message : String(error),
+      },
+      { status: 500 }
+    );
+  }
 }
