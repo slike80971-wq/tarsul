@@ -42,6 +42,14 @@ export async function POST(req: NextRequest) {
       },
     });
   } catch (error) {
-    return NextResponse.json({ error: 'حدث خطأ أثناء تسجيل الدخول' }, { status: 500 });
-  }
+  console.error("LOGIN ERROR:", error);
+
+  return NextResponse.json(
+    {
+      error: "حدث خطأ أثناء تسجيل الدخول",
+      details:
+        error instanceof Error ? error.message : String(error),
+    },
+    { status: 500 }
+  );
 }
